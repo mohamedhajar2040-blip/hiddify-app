@@ -2,112 +2,161 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080b14">
-  <title>Hiddify Panel</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 20px;
-      background: #080b14;
-      color: white;
-      font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-    }
-    .panel {
-      width: 100%;
-      max-width: 380px;
-      padding: 30px 24px;
-      background: #101725;
-      border: 1px solid #203b63;
-      border-radius: 22px;
-      box-shadow: 0 0 35px #087cff20;
-      text-align: center;
-    }
-    .logo {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 16px;
-      display: grid;
-      place-items: center;
-      border-radius: 20px;
-      background: #087cff;
-      font-size: 30px;
-      font-weight: bold;
-    }
-    h1 { margin-bottom: 8px; }
-    p { color: #a9b8cf; line-height: 1.7; }
-    input, button, .open-link {
-      width: 100%;
-      padding: 14px;
-      margin-top: 13px;
-      border-radius: 12px;
-      font-size: 16px;
-    }
-    input {
-      background: #080f1d;
-      border: 1px solid #293b56;
-      color: white;
-      outline-color: #1687ff;
-      text-align: right;
-    }
-    button, .open-link {
-      display: block;
-      border: 0;
-      background: #087cff;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .secondary {
-      background: #19263a;
-      border: 1px solid #2c4668;
-    }
-    #dashboard { display: none; }
-    .note { font-size: 12px; color: #8596af; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b14">
+<title>Hiddify Panel</title>
+<style>
+:root {
+  --bg:#080b14;
+  --card:#101725;
+  --accent:#087cff;
+  --text:#ffffff;
+  --muted:#a9b8cf;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:20px;
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+}
+.wrap{max-width:520px;margin:30px auto}
+.card{
+  background:var(--card);border:1px solid #203b63;
+  border-radius:20px;padding:24px;margin-bottom:16px;
+  box-shadow:0 0 30px #087cff12;
+}
+.logo{
+  width:62px;height:62px;border-radius:18px;
+  display:grid;place-items:center;background:var(--accent);
+  font-size:30px;font-weight:bold;margin-bottom:15px;
+}
+h1,h2{margin:8px 0 12px}
+p{color:var(--muted);line-height:1.7}
+input,button,a.action,select{
+  width:100%;padding:13px;margin-top:12px;
+  border-radius:11px;font-size:15px;
+}
+input,select{
+  background:#080f1d;color:white;
+  border:1px solid #293b56;
+}
+button,.action{
+  display:block;text-align:center;border:0;
+  background:var(--accent);color:white;
+  font-weight:bold;text-decoration:none;cursor:pointer;
+}
+.secondary{background:#19263a;border:1px solid #2c4668}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.nav button{flex:1;min-width:90px;margin:0}
+.section{display:none}
+.section.active{display:block}
+#dashboard{display:none}
+.small{font-size:12px}
+.status{color:#7db7ff;font-size:13px}
+label{display:block;margin-top:16px;color:var(--muted)}
+</style>
 </head>
 <body>
-  <main class="panel">
+<div class="wrap">
+  <header class="card">
     <div class="logo">H</div>
     <h1>Hiddify Panel</h1>
-    <p>مرحباً بك — واجهتك الخاصة</p>
+    <p>لوحة التحكم الخاصة بك</p>
+  </header>
 
-    <form id="login">
-      <input id="username" placeholder="اسم المستخدم"
-             autocomplete="username" required>
-      <input id="password" type="password"
-             placeholder="كلمة المرور"
-             autocomplete="current-password" required>
+  <section id="login" class="card">
+    <h2>تسجيل الدخول</h2>
+    <p>أدخل مفتاح الدخول للمتابعة.</p>
+    <form id="loginForm">
+      <input id="key" type="password" placeholder="مفتاح الدخول" required>
       <button type="submit">دخول</button>
     </form>
+    <p id="loginMsg" class="small"></p>
+    <p class="small">نسخة تجريبية: مفتاح الاختبار هو <b>DEMO-2026</b>. لا تستخدمه لحماية بيانات حقيقية.</p>
+  </section>
 
-    <section id="dashboard">
-      <h2>أهلاً بك 👋</h2>
-      <p>يمكنك الانتقال إلى تطبيق Hiddify الرسمي.</p>
-      <a class="open-link" href="hiddify://">فتح Hiddify</a>
-      <a class="open-link secondary"
+  <main id="dashboard">
+    <nav class="nav">
+      <button type="button" data-tab="theme">Theme</button>
+      <button type="button" data-tab="profile">Profile</button>
+      <button type="button" data-tab="vpn">VPN</button>
+    </nav>
+
+    <section id="theme" class="card section active">
+      <h2>🎨 Theme</h2>
+      <p>غيّر لون واجهة البانل.</p>
+      <label for="accent">اللون الأساسي</label>
+      <select id="accent">
+        <option value="#087cff">أزرق</option>
+        <option value="#7c3aed">بنفسجي</option>
+        <option value="#00a884">أخضر</option>
+        <option value="#e0528c">وردي</option>
+      </select>
+      <button id="applyTheme" type="button">تطبيق اللون</button>
+      <button id="resetTheme" class="secondary" type="button">استعادة اللون الأصلي</button>
+    </section>
+
+    <section id="profile" class="card section">
+      <h2>👤 Profile</h2>
+      <p>معلومات الجلسة الحالية</p>
+      <p>نوع الدخول: <b>مفتاح موحّد تجريبي</b></p>
+      <p>حالة الواجهة: <span class="status">متصل بالموقع</span></p>
+      <p class="small">لا توجد حسابات مستخدمين أو بيانات شخصية محفوظة في هذه النسخة.</p>
+      <button id="logout" class="secondary" type="button">تسجيل الخروج</button>
+    </section>
+
+    <section id="vpn" class="card section">
+      <h2>🌐 VPN</h2>
+      <p>افتح تطبيق Hiddify الرسمي على جهازك.</p>
+      <a class="action" href="hiddify://">فتح Hiddify</a>
+      <a class="action secondary"
          href="https://apps.apple.com/eg/search?term=Hiddify">
          الوصول إلى Hiddify في App Store
       </a>
+      <p class="small">لو التطبيق مش مثبت، افتح صفحة App Store. الاتصال الفعلي يتم من داخل التطبيق.</p>
     </section>
-
-    <p class="note">
-      نموذج واجهة تجريبي — تسجيل الدخول هنا غير مرتبط بحسابات حقيقية.
-    </p>
   </main>
+</div>
 
-  <script>
-    document.getElementById("login").addEventListener("submit", function(e) {
-      e.preventDefault();
-      document.getElementById("login").style.display = "none";
-      document.getElementById("dashboard").style.display = "block";
-    });
-  </script>
+<script>
+const login = document.getElementById('login');
+const dashboard = document.getElementById('dashboard');
+const loginMsg = document.getElementById('loginMsg');
+
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (document.getElementById('key').value === 'DEMO-2026') {
+    login.style.display = 'none';
+    dashboard.style.display = 'block';
+    loginMsg.textContent = '';
+  } else {
+    loginMsg.textContent = 'مفتاح الاختبار غير صحيح.';
+    loginMsg.style.color = '#ff7777';
+  }
+});
+
+document.querySelectorAll('[data-tab]').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+    document.getElementById(button.dataset.tab).classList.add('active');
+  });
+});
+
+document.getElementById('applyTheme').addEventListener('click', () => {
+  document.documentElement.style.setProperty('--accent', document.getElementById('accent').value);
+});
+
+document.getElementById('resetTheme').addEventListener('click', () => {
+  document.documentElement.style.setProperty('--accent', '#087cff');
+  document.getElementById('accent').value = '#087cff';
+});
+
+document.getElementById('logout').addEventListener('click', () => {
+  dashboard.style.display = 'none';
+  login.style.display = 'block';
+  document.getElementById('key').value = '';
+});
+</script>
 </body>
 </html>
