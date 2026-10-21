@@ -30,7 +30,7 @@ import 'package:hiddify/features/settings/overview/sections/tls_tricks_page.dart
 import 'package:hiddify/features/settings/overview/settings_page.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
+import 'package:hiddify/features/bone_lab/bone_lab_page.dart';
 part 'routing_config_notifier.g.dart';
 
 // each branch in go router has its own focus scope
@@ -312,6 +312,11 @@ class RoutingConfigNotifier extends _$RoutingConfigNotifier {
           ],
         ),
         GoRoute(name: 'intro', path: '/intro', builder: (_, _) => const IntroPage()),
+        GoRoute(
+  name: 'boneLab',
+  path: '/bone-lab',
+  builder: (_, _) => const BoneLabPage(),
+),
       ],
     );
   }
