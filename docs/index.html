@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b14">
+  <title>Hiddify Panel</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: #080b14;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    }
+    .panel {
+      width: 100%;
+      max-width: 380px;
+      padding: 30px 24px;
+      background: #101725;
+      border: 1px solid #203b63;
+      border-radius: 22px;
+      box-shadow: 0 0 35px #087cff20;
+      text-align: center;
+    }
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      background: #087cff;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    h1 { margin-bottom: 8px; }
+    p { color: #a9b8cf; line-height: 1.7; }
+    input, button, .open-link {
+      width: 100%;
+      padding: 14px;
+      margin-top: 13px;
+      border-radius: 12px;
+      font-size: 16px;
+    }
+    input {
+      background: #080f1d;
+      border: 1px solid #293b56;
+      color: white;
+      outline-color: #1687ff;
+      text-align: right;
+    }
+    button, .open-link {
+      display: block;
+      border: 0;
+      background: #087cff;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .secondary {
+      background: #19263a;
+      border: 1px solid #2c4668;
+    }
+    #dashboard { display: none; }
+    .note { font-size: 12px; color: #8596af; }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <div class="logo">H</div>
+    <h1>Hiddify Panel</h1>
+    <p>مرحباً بك — واجهتك الخاصة</p>
+
+    <form id="login">
+      <input id="username" placeholder="اسم المستخدم"
+             autocomplete="username" required>
+      <input id="password" type="password"
+             placeholder="كلمة المرور"
+             autocomplete="current-password" required>
+      <button type="submit">دخول</button>
+    </form>
+
+    <section id="dashboard">
+      <h2>أهلاً بك 👋</h2>
+      <p>يمكنك الانتقال إلى تطبيق Hiddify الرسمي.</p>
+      <a class="open-link" href="hiddify://">فتح Hiddify</a>
+      <a class="open-link secondary"
+         href="https://apps.apple.com/eg/search?term=Hiddify">
+         الوصول إلى Hiddify في App Store
+      </a>
+    </section>
+
+    <p class="note">
+      نموذج واجهة تجريبي — تسجيل الدخول هنا غير مرتبط بحسابات حقيقية.
+    </p>
+  </main>
+
+  <script>
+    document.getElementById("login").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("login").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+    });
+  </script>
+</body>
+</html>
