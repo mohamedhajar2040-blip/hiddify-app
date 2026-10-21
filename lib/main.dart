@@ -1,8 +1,7 @@
 
- // Dev channel entrypoint. Twin file: lib/main_prod.dart
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:hiddify/bootstrap.dart';
@@ -15,10 +14,7 @@ Future<void> main() async {
 
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
-  SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.edgeToEdge,
-  );
-
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -26,5 +22,5 @@ Future<void> main() async {
     ),
   );
 
-  await lazyBootstrap(widgetsBinding, Environment.dev);
+  return await lazyBootstrap(widgetsBinding, Environment.dev);
 }
