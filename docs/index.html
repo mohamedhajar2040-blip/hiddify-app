@@ -6,59 +6,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080b14">
 <title>Hiddify Panel</title>
+
 <style>
 :root {
-  --bg:#080b14;
-  --card:#101725;
-  --accent:#087cff;
-  --text:#ffffff;
-  --muted:#a9b8cf;
+  --bg: #080b14;
+  --card: #101725;
+  --accent: #087cff;
+  --text: #ffffff;
+  --muted: #a9b8cf;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;min-height:100vh;padding:20px;
-  background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
 }
-.wrap{max-width:520px;margin:30px auto}
-.card{
-  background:var(--card);border:1px solid #203b63;
-  border-radius:20px;padding:24px;margin-bottom:16px;
-  box-shadow:0 0 30px #087cff12;
+.wrap { max-width: 520px; margin: 30px auto; }
+.card {
+  background: var(--card);
+  border: 1px solid #203b63;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 30px #087cff12;
 }
-.logo{
-  width:62px;height:62px;border-radius:18px;
-  display:grid;place-items:center;background:var(--accent);
-  font-size:30px;font-weight:bold;margin-bottom:15px;
+.logo {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
-h1,h2{margin:8px 0 12px}
-p{color:var(--muted);line-height:1.7}
-input,button,a.action,select{
-  width:100%;padding:13px;margin-top:12px;
-  border-radius:11px;font-size:15px;
+h1, h2 { margin: 8px 0 12px; }
+p { color: var(--muted); line-height: 1.7; }
+input, button, a.action, select {
+  width: 100%;
+  padding: 13px;
+  margin-top: 12px;
+  border-radius: 11px;
+  font-size: 15px;
 }
-input,select{
-  background:#080f1d;color:white;
-  border:1px solid #293b56;
+input, select {
+  background: #080f1d;
+  color: white;
+  border: 1px solid #293b56;
 }
-button,.action{
-  display:block;text-align:center;border:0;
-  background:var(--accent);color:white;
-  font-weight:bold;text-decoration:none;cursor:pointer;
+button, .action {
+  display: block;
+  text-align: center;
+  border: 0;
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
 }
-.secondary{background:#19263a;border:1px solid #2c4668}
-.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.nav button{flex:1;min-width:90px;margin:0}
-.section{display:none}
-.section.active{display:block}
-#dashboard{display:none}
-.small{font-size:12px}
-.status{color:#7db7ff;font-size:13px}
-label{display:block;margin-top:16px;color:var(--muted)}
+button:disabled { opacity: .6; }
+.secondary {
+  background: #19263a;
+  border: 1px solid #2c4668;
+}
+.nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.nav button { flex: 1; min-width: 90px; margin: 0; }
+.section { display: none; }
+.section.active { display: block; }
+#dashboard { display: none; }
+.small { font-size: 12px; }
+.status { color: #7db7ff; font-size: 13px; }
+label { display: block; margin-top: 16px; color: var(--muted); }
+.message { font-size: 13px; overflow-wrap: anywhere; }
 </style>
 </head>
+
 <body>
 <div class="wrap">
+
   <header class="card">
     <div class="logo">H</div>
     <h1>Hiddify Panel</h1>
@@ -67,13 +101,27 @@ label{display:block;margin-top:16px;color:var(--muted)}
 
   <section id="login" class="card">
     <h2>تسجيل الدخول</h2>
-    <p>أدخل مفتاح الدخول للمتابعة.</p>
+    <p>أدخل البريد الإلكتروني وكلمة المرور الخاصة بحسابك.</p>
+
     <form id="loginForm">
-      <input id="key" type="password" placeholder="مفتاح الدخول" required>
-      <button type="submit">دخول</button>
+      <input
+        id="email"
+        type="email"
+        placeholder="البريد الإلكتروني"
+        autocomplete="username"
+        required
+      >
+      <input
+        id="password"
+        type="password"
+        placeholder="كلمة المرور"
+        autocomplete="current-password"
+        required
+      >
+      <button id="loginButton" type="submit">تسجيل الدخول</button>
     </form>
-    <p id="loginMsg" class="small"></p>
-    <p class="small">نسخة تجريبية: مفتاح الاختبار هو <b>DEMO-2026</b>. لا تستخدمه لحماية بيانات حقيقية.</p>
+
+    <p id="loginMsg" class="message" role="status"></p>
   </section>
 
   <main id="dashboard">
@@ -85,7 +133,8 @@ label{display:block;margin-top:16px;color:var(--muted)}
 
     <section id="theme" class="card section active">
       <h2>🎨 Theme</h2>
-      <p>غيّر لون واجهة البانل.</p>
+      <p>غيّر اللون الأساسي لواجهة البانل.</p>
+
       <label for="accent">اللون الأساسي</label>
       <select id="accent">
         <option value="#087cff">أزرق</option>
@@ -93,58 +142,152 @@ label{display:block;margin-top:16px;color:var(--muted)}
         <option value="#00a884">أخضر</option>
         <option value="#e0528c">وردي</option>
       </select>
+
       <button id="applyTheme" type="button">تطبيق اللون</button>
-      <button id="resetTheme" class="secondary" type="button">استعادة اللون الأصلي</button>
+      <button id="resetTheme" class="secondary" type="button">
+        استعادة اللون الأصلي
+      </button>
     </section>
 
     <section id="profile" class="card section">
       <h2>👤 Profile</h2>
-      <p>معلومات الجلسة الحالية</p>
-      <p>نوع الدخول: <b>مفتاح موحّد تجريبي</b></p>
-      <p>حالة الواجهة: <span class="status">متصل بالموقع</span></p>
-      <p class="small">لا توجد حسابات مستخدمين أو بيانات شخصية محفوظة في هذه النسخة.</p>
-      <button id="logout" class="secondary" type="button">تسجيل الخروج</button>
+      <p>معلومات الحساب الحالي</p>
+      <p>البريد الإلكتروني: <b id="profileEmail"></b></p>
+      <p>حالة الجلسة: <span class="status">تم تسجيل الدخول</span></p>
+      <button id="logout" class="secondary" type="button">
+        تسجيل الخروج
+      </button>
     </section>
 
     <section id="vpn" class="card section">
       <h2>🌐 VPN</h2>
       <p>افتح تطبيق Hiddify الرسمي على جهازك.</p>
+
       <a class="action" href="hiddify://">فتح Hiddify</a>
-      <a class="action secondary"
-         href="https://apps.apple.com/eg/search?term=Hiddify">
-         الوصول إلى Hiddify في App Store
+
+      <a
+        class="action secondary"
+        href="https://apps.apple.com/eg/search?term=Hiddify"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        الوصول إلى Hiddify في App Store
       </a>
-      <p class="small">لو التطبيق مش مثبت، افتح صفحة App Store. الاتصال الفعلي يتم من داخل التطبيق.</p>
+
+      <p class="small">
+        تشغيل الاتصال وإدارته يتم من داخل تطبيق Hiddify نفسه.
+      </p>
     </section>
   </main>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+const SUPABASE_URL = 'https://esozawbvjxwoesqpriyo.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzb3phd2J2anh3b2VzcXByaXlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2MTAxNzMsImV4cCI6MjEwODE4NjE3M30.bbvPvgTql9CXC5R6AP7I5ySmsvXUe-zeikNNkgXtfmY';
+
 const login = document.getElementById('login');
 const dashboard = document.getElementById('dashboard');
 const loginMsg = document.getElementById('loginMsg');
+const loginButton = document.getElementById('loginButton');
 
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  if (document.getElementById('key').value === 'DEMO-2026') {
-    login.style.display = 'none';
-    dashboard.style.display = 'block';
-    loginMsg.textContent = '';
-  } else {
-    loginMsg.textContent = 'مفتاح الاختبار غير صحيح.';
-    loginMsg.style.color = '#ff7777';
+let supabaseClient = null;
+
+function showMessage(message, isError = true) {
+  loginMsg.textContent = message;
+  loginMsg.style.color = isError ? '#ff7777' : '#7db7ff';
+}
+
+function showDashboard(user) {
+  login.style.display = 'none';
+  dashboard.style.display = 'block';
+  document.getElementById('profileEmail').textContent =
+    user.email || 'حساب المستخدم';
+
+  document.querySelectorAll('.section').forEach(section => {
+    section.classList.remove('active');
+  });
+  document.getElementById('theme').classList.add('active');
+}
+
+function showLogin() {
+  dashboard.style.display = 'none';
+  login.style.display = 'block';
+  document.getElementById('password').value = '';
+}
+
+async function initialize() {
+  if (!window.supabase) {
+    showMessage('تعذر تحميل خدمة تسجيل الدخول. حدّث الصفحة وحاول مرة أخرى.');
+    return;
+  }
+
+  supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+  const { data, error } = await supabaseClient.auth.getSession();
+
+  if (error) {
+    showMessage('تعذر التحقق من الجلسة. حاول تسجيل الدخول.');
+    return;
+  }
+
+  if (data.session) {
+    showDashboard(data.session.user);
+  }
+}
+
+document.getElementById('loginForm').addEventListener('submit', async event => {
+  event.preventDefault();
+
+  if (!supabaseClient) {
+    showMessage('خدمة تسجيل الدخول غير جاهزة. حدّث الصفحة وحاول مرة أخرى.');
+    return;
+  }
+
+  loginButton.disabled = true;
+  loginButton.textContent = 'جارٍ تسجيل الدخول...';
+  showMessage('', false);
+
+  try {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      showMessage('فشل تسجيل الدخول. تأكد من البريد الإلكتروني وكلمة المرور.');
+      return;
+    }
+
+    showDashboard(data.user);
+  } catch (error) {
+    showMessage('حدث خطأ في الاتصال. تحقق من الإنترنت وحاول مرة أخرى.');
+  } finally {
+    loginButton.disabled = false;
+    loginButton.textContent = 'تسجيل الدخول';
   }
 });
 
 document.querySelectorAll('[data-tab]').forEach(button => {
   button.addEventListener('click', () => {
-    document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.remove('active');
+    });
+
     document.getElementById(button.dataset.tab).classList.add('active');
   });
 });
 
 document.getElementById('applyTheme').addEventListener('click', () => {
-  document.documentElement.style.setProperty('--accent', document.getElementById('accent').value);
+  const color = document.getElementById('accent').value;
+  document.documentElement.style.setProperty('--accent', color);
 });
 
 document.getElementById('resetTheme').addEventListener('click', () => {
@@ -152,11 +295,21 @@ document.getElementById('resetTheme').addEventListener('click', () => {
   document.getElementById('accent').value = '#087cff';
 });
 
-document.getElementById('logout').addEventListener('click', () => {
-  dashboard.style.display = 'none';
-  login.style.display = 'block';
-  document.getElementById('key').value = '';
+document.getElementById('logout').addEventListener('click', async () => {
+  if (!supabaseClient) return;
+
+  const { error } = await supabaseClient.auth.signOut();
+
+  if (error) {
+    alert('تعذر تسجيل الخروج. حاول مرة أخرى.');
+    return;
+  }
+
+  showLogin();
+  showMessage('تم تسجيل الخروج بنجاح.', false);
 });
+
+initialize();
 </script>
 </body>
 </html>
