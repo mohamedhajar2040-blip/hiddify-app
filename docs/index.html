@@ -250,7 +250,7 @@ document.getElementById('loginForm').addEventListener('submit', async event => {
     const { data, error } = await client.auth.signInWithPassword({ email, password });
 
     if (error) {
-      message('تعذر تسجيل الدخول. تأكد من البريد الإلكتروني وكلمة المرور.');
+      message('خطأ تسجيل الدخول: ' + error.message);
       return;
     }
 
