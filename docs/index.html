@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -50,7 +49,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
     <div><h1>DRIP CAR</h1><p>لوحة التحكم الخاصة بك</p></div>
   </div>
 </header>
-
 <section id="login" class="card">
   <div id="loginView">
     <h2>تسجيل الدخول</h2>
@@ -63,7 +61,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
     <button id="showSignup" type="button" class="secondary">إنشاء حساب جديد</button>
     <p id="loginMsg" class="message" role="status"></p>
   </div>
-
   <div id="signupView" hidden>
     <h2>إنشاء حساب جديد</h2>
     <p>أنشئ حسابك باستخدام بريد إلكتروني وكلمة مرور.</p>
@@ -76,17 +73,16 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
     <p id="signupMsg" class="message" role="status"></p>
   </div>
 </section>
-
 <main id="dashboard">
   <section class="card">
     <h2>أهلًا بيك 👋</h2>
     <p>إدارة حسابك وأدواتك من مكان واحد.</p>
+    <p id="accountStatus" class="status">جارٍ التحقق من حالة الحساب...</p>
     <div class="grid">
       <div class="tile"><div class="emoji">👤</div><h3>حسابك</h3><p>معلومات حسابك والجلسة.</p></div>
       <div class="tile"><div class="emoji">🧰</div><h3>الأدوات</h3><p>إعدادات مستقلة للموقع.</p></div>
     </div>
   </section>
-
   <nav class="nav">
     <button class="active" data-tab="home" type="button">الرئيسية</button>
     <button data-tab="tools" type="button">الأدوات</button>
@@ -96,15 +92,12 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
     <button data-tab="settings" type="button">الإعدادات</button>
     <button data-tab="admin" type="button" id="adminNav" hidden>الإدارة</button>
   </nav>
-
   <section id="home" class="card section active">
     <h2>🏠 الرئيسية</h2>
     <p>مرحبًا بك في DRIP CAR.</p>
     <p>استخدم الأقسام لإدارة إعدادات واجهتك وحسابك.</p>
-    <p class="status">● تم تسجيل الدخول</p>
     <button type="button" data-go="tools">استكشاف الأدوات</button>
   </section>
-
   <section id="tools" class="card section">
     <h2>🧰 الأدوات</h2>
     <p>أدوات الموقع المستقلة، من غير حقن أو تعديل ملفات اللعبة.</p>
@@ -118,15 +111,13 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
     <input id="siteUrl" type="url" placeholder="https://example.com">
     <button type="button" id="openUrl">فتح الرابط</button>
   </section>
-
   <section id="profile" class="card section">
     <h2>👤 حسابي</h2>
     <p>البريد الإلكتروني:</p>
     <p id="profileEmail" class="status"></p>
-    <p>حالة الجلسة: <span class="status">مسجّل الدخول</span></p>
+    <p>حالة الحساب: <span id="profileStatus" class="status">جارٍ التحقق...</span></p>
     <button type="button" id="logout" class="secondary">تسجيل الخروج</button>
   </section>
-
   <section id="theme" class="card section">
     <h2>🎨 المظهر</h2>
     <p>اختار اللون المناسب ليك.</p>
@@ -141,20 +132,25 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
     <button type="button" id="applyTheme">تطبيق اللون</button>
     <button type="button" id="resetTheme" class="secondary">استعادة اللون الأصلي</button>
   </section>
-
   <section id="activation" class="card section">
-    <h2>🔐 التفعيل</h2>
-    <p class="status">● تسجيل الدخول نشط</p>
-    <p>لو استلمت مفتاح تفعيل من المالك، استخدمه بعد إعداد خدمة التفعيل الآمنة.</p>
-    <p class="small">إنشاء المفاتيح وإدارتها متاح للحسابات المصرح لها فقط.</p>
+    <h2>🔐 تفعيل الحساب</h2>
+    <p id="activationStatus" class="status">جارٍ التحقق من حالة التفعيل...</p>
+    <div id="activationFormArea" hidden>
+      <p>أدخل مفتاح التفعيل الذي استلمته من مالك الموقع.</p>
+      <form id="redeemForm">
+        <label for="activationCode">مفتاح التفعيل</label>
+        <input id="activationCode" type="text" maxlength="200" autocomplete="off" placeholder="اكتب مفتاح التفعيل هنا" required>
+        <button id="redeemButton" type="submit">تفعيل الحساب</button>
+      </form>
+    </div>
+    <p id="activationMsg" class="message" role="status"></p>
+    <p class="small">لو ما عندكش مفتاح، تواصل مع مالك الموقع.</p>
   </section>
-
   <section id="settings" class="card section">
     <h2>⚙️ الإعدادات</h2>
     <p>إعادة لون الواجهة إلى اللون الافتراضي.</p>
     <button type="button" id="resetAll" class="secondary">إعادة ضبط اللون</button>
   </section>
-
   <section id="admin" class="card section">
     <h2>🔐 إدارة مفاتيح التفعيل</h2>
     <p>إنشاء المفاتيح ومراجعتها وإيقافها.</p>
@@ -170,25 +166,35 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
 </main>
 <footer>DRIP CAR · لوحة التحكم</footer>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL = 'https://esozawbvjxwoesqpriyo.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_Afp2wBFFT4IOCf6YAlUKfQ_fHRFmSwX';
-
 const loginPanel = document.getElementById('login');
 const dashboard = document.getElementById('dashboard');
 const loginMsg = document.getElementById('loginMsg');
 const loginButton = document.getElementById('loginButton');
 const adminNav = document.getElementById('adminNav');
 let client = null;
-
+let currentUser = null;
+let isAdmin = false;
+let isActivated = false;
 function message(text, error = true) {
   loginMsg.textContent = text;
   loginMsg.style.color = error ? '#ff7777' : '#7db7ff';
 }
 function signupMessage(text, error = true) {
   const el = document.getElementById('signupMsg');
+  el.textContent = text;
+  el.style.color = error ? '#ff7777' : '#7db7ff';
+}
+function activationMessage(text, error = true) {
+  const el = document.getElementById('activationMsg');
+  el.textContent = text;
+  el.style.color = error ? '#ff7777' : '#7db7ff';
+}
+function adminMessage(text, error = false) {
+  const el = document.getElementById('adminMsg');
   el.textContent = text;
   el.style.color = error ? '#ff7777' : '#7db7ff';
 }
@@ -200,23 +206,56 @@ function showSignupView(show) {
 }
 document.getElementById('showSignup').addEventListener('click', () => showSignupView(true));
 document.getElementById('cancelSignup').addEventListener('click', () => showSignupView(false));
-
+function updateAccessUI() {
+  const status = document.getElementById('accountStatus');
+  const profileStatus = document.getElementById('profileStatus');
+  const activationStatus = document.getElementById('activationStatus');
+  const activationArea = document.getElementById('activationFormArea');
+  if (isAdmin) {
+    status.textContent = '● حساب مدير';
+    profileStatus.textContent = 'مدير';
+    activationStatus.textContent = 'حساب المدير لا يحتاج مفتاح تفعيل.';
+    activationArea.hidden = true;
+  } else if (isActivated) {
+    status.textContent = '● الحساب مفعّل';
+    profileStatus.textContent = 'مفعّل';
+    activationStatus.textContent = '● حسابك مفعّل بنجاح.';
+    activationArea.hidden = true;
+  } else {
+    status.textContent = '● الحساب غير مفعّل';
+    profileStatus.textContent = 'غير مفعّل';
+    activationStatus.textContent = 'حسابك غير مفعّل. أدخل مفتاحًا صالحًا للمتابعة.';
+    activationArea.hidden = false;
+  }
+  document.querySelectorAll('[data-tab]').forEach(button => {
+    const id = button.dataset.tab;
+    button.hidden = id === 'admin' ? !isAdmin :
+      (!isAdmin && !isActivated && !['activation','profile'].includes(id));
+  });
+}
 function showDashboard(user) {
+  currentUser = user;
   loginPanel.style.display = 'none';
   dashboard.style.display = 'block';
   document.getElementById('profileEmail').textContent = user.email || 'حساب المستخدم';
-  showTab('home');
 }
 function showLogin() {
+  currentUser = null;
+  isAdmin = false;
+  isActivated = false;
   dashboard.style.display = 'none';
   loginPanel.style.display = 'block';
   document.getElementById('password').value = '';
   document.getElementById('signupPassword').value = '';
   adminNav.hidden = true;
   document.getElementById('keysList').replaceChildren();
+  document.getElementById('activationCode').value = '';
 }
 function showTab(id) {
-  if (id === 'admin' && adminNav.hidden) id = 'home';
+  if (id === 'admin' && !isAdmin) id = 'activation';
+  if (!isAdmin && !isActivated && !['activation','profile'].includes(id)) {
+    id = 'activation';
+  }
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('active'));
   const section = document.getElementById(id);
@@ -224,19 +263,73 @@ function showTab(id) {
   const button = document.querySelector('[data-tab="' + id + '"]');
   if (button) button.classList.add('active');
 }
-
+async function checkAdmin() {
+  adminNav.hidden = true;
+  if (!client) return false;
+  try {
+    const { data: sessionData, error: sessionError } = await client.auth.getSession();
+    if (sessionError || !sessionData.session) return false;
+    const { data, error } = await client.rpc('admin_is_current_user');
+    if (error || data !== true) return false;
+    adminNav.hidden = false;
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+async function refreshAccountState() {
+  if (!client || !currentUser) return false;
+  isAdmin = await checkAdmin();
+  if (isAdmin) {
+    isActivated = true;
+    updateAccessUI();
+    showTab('home');
+    return true;
+  }
+  try {
+    const { data, error } = await client
+      .from('user_permissions')
+      .select('is_activated')
+      .eq('user_id', currentUser.id)
+      .maybeSingle();
+    if (error) {
+      isActivated = false;
+      updateAccessUI();
+      activationMessage('تعذر التحقق من حالة التفعيل. حاول مرة أخرى.', true);
+      showTab('activation');
+      return false;
+    }
+    isActivated = !!(data && data.is_activated === true);
+    updateAccessUI();
+    showTab(isActivated ? 'home' : 'activation');
+    return isActivated;
+  } catch (e) {
+    isActivated = false;
+    updateAccessUI();
+    showTab('activation');
+    activationMessage('حدث خطأ أثناء التحقق من الحساب.', true);
+    return false;
+  }
+}
 document.querySelectorAll('[data-tab]').forEach(button => {
   button.addEventListener('click', async () => {
     const id = button.dataset.tab;
     if (id === 'admin') {
-      const allowed = await checkAdmin();
-      if (!allowed) {
-        showTab('home');
+      if (!await checkAdmin()) {
+        isAdmin = false;
+        updateAccessUI();
+        showTab('activation');
         adminMessage('حسابك لا يملك صلاحية الإدارة.', true);
         return;
       }
+      isAdmin = true;
+      updateAccessUI();
       showTab('admin');
       await loadActivationKeys();
+      return;
+    }
+    if (!isAdmin && !isActivated && !['activation','profile'].includes(id)) {
+      showTab('activation');
       return;
     }
     showTab(id);
@@ -245,7 +338,6 @@ document.querySelectorAll('[data-tab]').forEach(button => {
 document.querySelectorAll('[data-go]').forEach(button => {
   button.addEventListener('click', () => showTab(button.dataset.go));
 });
-
 document.getElementById('loginForm').addEventListener('submit', async event => {
   event.preventDefault();
   if (!client) {
@@ -264,7 +356,7 @@ document.getElementById('loginForm').addEventListener('submit', async event => {
       return;
     }
     showDashboard(data.user);
-    await checkAdmin();
+    await refreshAccountState();
   } catch (e) {
     message('حدث خطأ في الاتصال. حاول مرة أخرى.');
   } finally {
@@ -272,7 +364,6 @@ document.getElementById('loginForm').addEventListener('submit', async event => {
     loginButton.textContent = 'تسجيل الدخول';
   }
 });
-
 document.getElementById('signupForm').addEventListener('submit', async event => {
   event.preventDefault();
   if (!client) {
@@ -303,10 +394,10 @@ document.getElementById('signupForm').addEventListener('submit', async event => 
     }
     if (data.session && data.user) {
       showDashboard(data.user);
-      await checkAdmin();
-      alert('تم إنشاء الحساب وتسجيل الدخول.');
+      await refreshAccountState();
+      signupMessage('تم إنشاء الحساب. أدخل مفتاح التفعيل للمتابعة.', false);
     } else {
-      signupMessage('تم إرسال طلب التسجيل. افحص بريدك الإلكتروني لتأكيد الحساب، ثم ارجع وسجّل الدخول.', false);
+      signupMessage('تم إرسال طلب التسجيل. افحص بريدك لتأكيد الحساب، ثم ارجع وسجّل الدخول.', false);
     }
   } catch (e) {
     signupMessage('حدث خطأ في الاتصال. حاول مرة أخرى.');
@@ -315,7 +406,43 @@ document.getElementById('signupForm').addEventListener('submit', async event => 
     button.textContent = 'إنشاء الحساب';
   }
 });
-
+document.getElementById('redeemForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!client || !currentUser) {
+    activationMessage('سجّل الدخول أولًا.', true);
+    return;
+  }
+  const code = document.getElementById('activationCode').value.trim();
+  if (!code) {
+    activationMessage('اكتب مفتاح التفعيل أولًا.', true);
+    return;
+  }
+  const button = document.getElementById('redeemButton');
+  button.disabled = true;
+  button.textContent = 'جارٍ التحقق من المفتاح...';
+  activationMessage('', false);
+  try {
+    const { data, error } = await client.rpc('redeem_activation_key', {
+      p_key_code: code
+    });
+    if (error) {
+      activationMessage('تعذر التفعيل. تأكد من إعدادات Supabase وحاول مرة أخرى.', true);
+      return;
+    }
+    if (!data || data.success !== true) {
+      activationMessage(data?.message || 'المفتاح غير صالح أو انتهت صلاحيته.', true);
+      return;
+    }
+    document.getElementById('activationCode').value = '';
+    activationMessage('تم تفعيل الحساب بنجاح.', false);
+    await refreshAccountState();
+  } catch (e) {
+    activationMessage('حدث خطأ في الاتصال أثناء التفعيل.', true);
+  } finally {
+    button.disabled = false;
+    button.textContent = 'تفعيل الحساب';
+  }
+});
 function applyColor(color) {
   document.documentElement.style.setProperty('--accent', color);
   document.getElementById('accent').value = color;
@@ -326,11 +453,20 @@ function resetTheme() {
   document.getElementById('accent').value = '#087cff';
   try { localStorage.removeItem('dripCarAccent'); } catch(e) {}
 }
-document.getElementById('applyTheme').addEventListener('click', () => applyColor(document.getElementById('accent').value));
-document.getElementById('resetTheme').addEventListener('click', resetTheme);
-document.getElementById('resetAll').addEventListener('click', resetTheme);
-
+document.getElementById('applyTheme').addEventListener('click', () => {
+  if (!isAdmin && !isActivated) return showTab('activation');
+  applyColor(document.getElementById('accent').value);
+});
+document.getElementById('resetTheme').addEventListener('click', () => {
+  if (!isAdmin && !isActivated) return showTab('activation');
+  resetTheme();
+});
+document.getElementById('resetAll').addEventListener('click', () => {
+  if (!isAdmin && !isActivated) return showTab('activation');
+  resetTheme();
+});
 document.getElementById('openUrl').addEventListener('click', () => {
+  if (!isAdmin && !isActivated) return showTab('activation');
   try {
     const url = new URL(document.getElementById('siteUrl').value.trim());
     if (!['https:', 'http:'].includes(url.protocol)) throw new Error();
@@ -339,7 +475,6 @@ document.getElementById('openUrl').addEventListener('click', () => {
     alert('اكتب رابطًا صحيحًا يبدأ بـ https:// أو http://');
   }
 });
-
 document.getElementById('logout').addEventListener('click', async () => {
   if (!client) return;
   const { error } = await client.auth.signOut();
@@ -351,30 +486,9 @@ document.getElementById('logout').addEventListener('click', async () => {
   showSignupView(false);
   message('تم تسجيل الخروج بنجاح.', false);
 });
-
-async function checkAdmin() {
-  adminNav.hidden = true;
-  if (!client) return false;
-  try {
-    const { data: sessionData, error: sessionError } = await client.auth.getSession();
-    if (sessionError || !sessionData.session) return false;
-    const { data, error } = await client.rpc('admin_is_current_user');
-    if (error || data !== true) return false;
-    adminNav.hidden = false;
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-function adminMessage(text, error = false) {
-  const el = document.getElementById('adminMsg');
-  el.textContent = text;
-  el.style.color = error ? '#ff7777' : '#7db7ff';
-}
-
 async function loadActivationKeys() {
   if (!await checkAdmin()) {
-    adminMessage('تعذر التحقق من صلاحية الإدارة. سجّل الدخول بحساب الأدمن.', true);
+    adminMessage('تعذر التحقق من صلاحية الإدارة. سجّل الدخول بحساب المدير.', true);
     return;
   }
   const list = document.getElementById('keysList');
@@ -413,7 +527,9 @@ async function loadActivationKeys() {
         button.addEventListener('click', async () => {
           button.disabled = true;
           try {
-            const { data: ok, error } = await client.rpc('admin_disable_activation_key', { p_key_id: key.id });
+            const { data: ok, error } = await client.rpc('admin_disable_activation_key', {
+              p_key_id: key.id
+            });
             if (error || !ok) {
               adminMessage('تعذر إيقاف المفتاح.', true);
               button.disabled = false;
@@ -434,7 +550,6 @@ async function loadActivationKeys() {
     list.textContent = 'حدث خطأ في الاتصال أثناء تحميل المفاتيح.';
   }
 }
-
 document.getElementById('createKey').addEventListener('click', async () => {
   if (!await checkAdmin()) {
     adminMessage('حسابك لا يملك صلاحية الإدارة.', true);
@@ -457,12 +572,7 @@ document.getElementById('createKey').addEventListener('click', async () => {
       p_max_uses: uses
     });
     if (error) {
-      adminMessage(
-        error.message && error.message.includes('Admin access required')
-          ? 'حسابك لا يملك صلاحية الإدارة في قاعدة البيانات.'
-          : 'تعذر إنشاء المفتاح. تحقق من تسجيل الدخول وإعدادات Supabase.',
-        true
-      );
+      adminMessage('تعذر إنشاء المفتاح. تحقق من تسجيل الدخول وصلاحية المدير.', true);
       return;
     }
     adminMessage('تم إنشاء المفتاح: ' + data);
@@ -474,9 +584,7 @@ document.getElementById('createKey').addEventListener('click', async () => {
     button.textContent = 'إنشاء مفتاح جديد';
   }
 });
-
 document.getElementById('refreshKeys').addEventListener('click', loadActivationKeys);
-
 async function initialize() {
   try {
     const savedColor = localStorage.getItem('dripCarAccent');
@@ -498,7 +606,7 @@ async function initialize() {
     }
     if (data.session) {
       showDashboard(data.session.user);
-      await checkAdmin();
+      await refreshAccountState();
     }
   } catch(e) {
     message('تعذر الاتصال بخدمة تسجيل الدخول.');
