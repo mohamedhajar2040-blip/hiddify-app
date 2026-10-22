@@ -288,6 +288,161 @@ async function initialize() {
     message('تعذر الاتصال بخدمة تسجيل الدخول.');
   }
 }
+
+async function checkAdmin() {
+  const nav = document.getElementById('adminNav');
+  nav.hidden = true;
+
+  if (!client) return false;
+
+  const { data: { session } } = await client.auth.getSession();
+  if (!session) return false;
+
+  const { data, error } = await client
+    .from('user_permissions')
+    .select('role')
+    .eq('user_id', session.user.id)
+    .maybeSingle();
+
+  if (error || data?.role !== 'admin') return false;
+
+  nav.hidden = false;
+  return true;
+}
+
+function adminMessage(text, error = false) {
+  const el = document.getElementById('adminMsg');
+  el.textContent = text;
+  el.style.color = error ? '#ff7777' : '#7db7ff';
+}
+
+async function loadActivationKeys() {
+  if (!await checkAdmin()) {
+    adminMessage('حسابك لا يملك صلاحية الإدارة.', true);
+    return;
+  }
+
+  const list = document.getElementById('keysList');
+  list.textContent = 'جارٍ تحميل المفاتيح...';
+
+  const { data, error } = await client.rpc('admin_list_activation_keys');
+
+  if (error) {
+    list.textContent = 'تعذر تحميل المفاتيح. راجع إعدادات الصلاحيات.';
+    return;
+  }
+
+  list.replaceChildren();
+
+  if (!data || data.length === 0) {
+    list.textContent = 'لا توجد مفاتيح تفعيل حتى الآن.';
+    return;
+  }
+
+  data.forEach(key => {
+    const item = document.createElement('div');
+    item.className = 'tile';
+    item.style.marginTop = '12px';
+
+    const code = document.createElement('p');
+    code.textContent = 'المفتاح: ' + key.key_code;
+
+    const state = document.createElement('p');
+    state.textContent = 'الحالة: ' + (key.is_active ? 'نشط' : 'متوقف');
+
+    const uses = document.createElement('p');
+    uses.textContent = 'الاستخدامات: ' + key.uses_count + ' / ' + key.max_uses;
+
+    item.append(code, state, uses);
+
+    if (key.expires_at) {
+      const expiry = document.createElement('p');
+      expiry.textContent = 'ينتهي: ' + new Date(key.expires_at).toLocaleString('ar-EG');
+      item.append(expiry);
+    }
+
+    if (key.is_active) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = 'إيقاف المفتاح';
+
+      button.addEventListener('click', async () => {
+        button.disabled = true;
+
+        const { data: ok, error } = await client.rpc(
+          'admin_disable_activation_key',
+          { p_key_id: key.id }
+        );
+
+        if (error || !ok) {
+          adminMessage('تعذر إيقاف المفتاح.', true);
+          button.disabled = false;
+          return;
+        }
+
+        adminMessage('تم إيقاف المفتاح.');
+        await loadActivationKeys();
+      });
+
+      item.append(button);
+    }
+
+    list.append(item);
+  });
+}
+
+document.getElementById('createKey').addEventListener('click', async () => {
+  if (!await checkAdmin()) {
+    adminMessage('حسابك لا يملك صلاحية الإدارة.', true);
+    return;
+  }
+
+  const days = Number(document.getElementById('keyDays').value);
+  const uses = Number(document.getElementById('keyUses').value);
+
+  if (!Number.isInteger(days) || days < 1 || days > 3650 ||
+      !Number.isInteger(uses) || uses < 1 || uses > 1000) {
+    adminMessage('أدخل مدة من 1 إلى 3650 يومًا، واستخدامات من 1 إلى 1000.', true);
+    return;
+  }
+
+  const button = document.getElementById('createKey');
+  button.disabled = true;
+
+  try {
+    const expiry = new Date(Date.now() + days * 86400000).toISOString();
+
+    const { data, error } = await client.rpc(
+      'admin_create_activation_key',
+      {
+        p_expires_at: expiry,
+        p_max_uses: uses
+      }
+    );
+
+    if (error) {
+      adminMessage(
+        error.message.includes('Admin access required')
+          ? 'حسابك لا يملك صلاحية الإدارة في قاعدة البيانات.'
+          : 'تعذر إنشاء المفتاح. تحقق من تسجيل الدخول وإعدادات Supabase.',
+        true
+      );
+      return;
+    }
+
+    adminMessage('تم إنشاء المفتاح: ' + data);
+    await loadActivationKeys();
+  } finally {
+    button.disabled = false;
+  }
+});
+
+document.getElementById('refreshKeys').addEventListener('click', loadActivationKeys);
+
+document.getElementById('adminNav').addEventListener('click', async () => {
+  if (await checkAdmin()) await loadActivationKeys();
+});
+
 initialize();
 </script>
 </body>
