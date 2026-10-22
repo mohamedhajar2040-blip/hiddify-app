@@ -1,5 +1,5 @@
 
-name: iOS Build Test
+name: iOS IPA Build
 
 on:
   workflow_dispatch:
@@ -8,9 +8,9 @@ permissions:
   contents: read
 
 jobs:
-  check-ios:
+  build-ios:
     runs-on: macos-15
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     steps:
       - name: Checkout repository
@@ -23,9 +23,11 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Check iOS build commands
-        run: |
-          flutter --version
-          make -n ios-install-deps
-          make -n ios-prepare
-          make -n ios-release
+      - name: Install iOS dependencies
+        run: make ios-install-deps
+
+      - name: Prepare iOS
+        run: make ios-prepare
+
+      - name: Build iOS release
+        run: make ios-release
