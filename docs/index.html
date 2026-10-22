@@ -5,310 +5,267 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080b14">
-<title>Hiddify Panel</title>
-
+<title>DRIP CAR</title>
 <style>
-:root {
-  --bg: #080b14;
-  --card: #101725;
-  --accent: #087cff;
-  --text: #ffffff;
-  --muted: #a9b8cf;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  min-height: 100vh;
-  padding: 20px;
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-}
-.wrap { max-width: 520px; margin: 30px auto; }
-.card {
-  background: var(--card);
-  border: 1px solid #203b63;
-  border-radius: 20px;
-  padding: 24px;
-  margin-bottom: 16px;
-  box-shadow: 0 0 30px #087cff12;
-}
-.logo {
-  width: 62px;
-  height: 62px;
-  border-radius: 18px;
-  display: grid;
-  place-items: center;
-  background: var(--accent);
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-h1, h2 { margin: 8px 0 12px; }
-p { color: var(--muted); line-height: 1.7; }
-input, button, a.action, select {
-  width: 100%;
-  padding: 13px;
-  margin-top: 12px;
-  border-radius: 11px;
-  font-size: 15px;
-}
-input, select {
-  background: #080f1d;
-  color: white;
-  border: 1px solid #293b56;
-}
-button, .action {
-  display: block;
-  text-align: center;
-  border: 0;
-  background: var(--accent);
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
-}
-button:disabled { opacity: .6; }
-.secondary {
-  background: #19263a;
-  border: 1px solid #2c4668;
-}
-.nav {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-}
-.nav button { flex: 1; min-width: 90px; margin: 0; }
-.section { display: none; }
-.section.active { display: block; }
-#dashboard { display: none; }
-.small { font-size: 12px; }
-.status { color: #7db7ff; font-size: 13px; }
-label { display: block; margin-top: 16px; color: var(--muted); }
-.message { font-size: 13px; overflow-wrap: anywhere; }
+:root{--bg:#080b14;--card:#101725;--accent:#087cff;--text:#f5f8ff;--muted:#9aabc4;--border:#203653}
+*{box-sizing:border-box}
+body{margin:0;padding:16px;min-height:100vh;background:radial-gradient(ellipse at top,#102444,var(--bg) 60%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+.wrap{max-width:620px;margin:20px auto}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px;margin-bottom:15px;box-shadow:0 10px 30px #0002}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(135deg,#168bff,#0643a7);font-size:22px;font-weight:900}
+h1{font-size:24px;margin:0}h2{font-size:19px;margin:5px 0 12px}
+p{color:var(--muted);line-height:1.8;margin:8px 0}
+input,button,select{width:100%;padding:13px;margin-top:12px;border-radius:11px;font-size:15px}
+input,select{background:#080f1d;color:white;border:1px solid #293b56}
+button{display:block;text-align:center;border:0;background:var(--accent);color:white;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.6}
+.secondary{background:#19263a;border:1px solid #2c4668}
+.nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:15px}
+.nav button{font-size:13px;padding:12px 4px;margin:0}
+.nav button.active{background:#0753a7;outline:1px solid #3998ff}
+.section{display:none}.section.active{display:block}#dashboard{display:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{background:#0b1423;border:1px solid var(--border);padding:15px 12px;border-radius:15px}
+.tile .emoji{font-size:25px}.tile h3{font-size:15px;margin:9px 0 4px}.tile p{font-size:12px;margin:0}
+label{display:block;margin-top:15px;color:var(--muted);font-size:14px}
+.status{color:#7db7ff;font-size:13px}.message{font-size:13px;overflow-wrap:anywhere}.small{font-size:12px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
 </style>
 </head>
-
 <body>
 <div class="wrap">
+<header class="card">
+  <div class="brand">
+    <div class="logo">DC</div>
+    <div><h1>DRIP CAR</h1><p>لوحة التحكم الخاصة بك</p></div>
+  </div>
+</header>
 
-  <header class="card">
-    <div class="logo">H</div>
-    <h1>Hiddify Panel</h1>
-    <p>لوحة التحكم الخاصة بك</p>
-  </header>
+<section id="login" class="card">
+  <h2>تسجيل الدخول</h2>
+  <p>سجّل الدخول بحسابك الحالي للمتابعة.</p>
+  <form id="loginForm">
+    <input id="email" type="email" placeholder="البريد الإلكتروني" autocomplete="username" required>
+    <input id="password" type="password" placeholder="كلمة المرور" autocomplete="current-password" required>
+    <button id="loginButton" type="submit">تسجيل الدخول</button>
+  </form>
+  <p id="loginMsg" class="message" role="status"></p>
+</section>
 
-  <section id="login" class="card">
-    <h2>تسجيل الدخول</h2>
-    <p>أدخل البريد الإلكتروني وكلمة المرور الخاصة بحسابك.</p>
-
-    <form id="loginForm">
-      <input
-        id="email"
-        type="email"
-        placeholder="البريد الإلكتروني"
-        autocomplete="username"
-        required
-      >
-      <input
-        id="password"
-        type="password"
-        placeholder="كلمة المرور"
-        autocomplete="current-password"
-        required
-      >
-      <button id="loginButton" type="submit">تسجيل الدخول</button>
-    </form>
-
-    <p id="loginMsg" class="message" role="status"></p>
+<main id="dashboard">
+  <section class="card">
+    <h2>أهلًا بيك 👋</h2>
+    <p>إدارة حسابك وأدواتك من مكان واحد.</p>
+    <div class="grid">
+      <div class="tile"><div class="emoji">👤</div><h3>حسابك</h3><p>معلومات حسابك والجلسة.</p></div>
+      <div class="tile"><div class="emoji">🧰</div><h3>الأدوات</h3><p>إعدادات مستقلة للموقع.</p></div>
+    </div>
   </section>
 
-  <main id="dashboard">
-    <nav class="nav">
-      <button type="button" data-tab="theme">Theme</button>
-      <button type="button" data-tab="profile">Profile</button>
-      <button type="button" data-tab="vpn">VPN</button>
-    </nav>
+  <nav class="nav">
+    <button class="active" data-tab="home" type="button">الرئيسية</button>
+    <button data-tab="tools" type="button">الأدوات</button>
+    <button data-tab="profile" type="button">حسابي</button>
+    <button data-tab="theme" type="button">المظهر</button>
+    <button data-tab="activation" type="button">التفعيل</button>
+    <button data-tab="settings" type="button">الإعدادات</button>
+  </nav>
 
-    <section id="theme" class="card section active">
-      <h2>🎨 Theme</h2>
-      <p>غيّر اللون الأساسي لواجهة البانل.</p>
+  <section id="home" class="card section active">
+    <h2>🏠 الرئيسية</h2>
+    <p>مرحبًا بك في DRIP CAR.</p>
+    <p>استخدم الأقسام لإدارة إعدادات واجهتك وحسابك.</p>
+    <p class="status">● تم تسجيل الدخول</p>
+    <button type="button" data-go="tools">استكشاف الأدوات</button>
+  </section>
 
-      <label for="accent">اللون الأساسي</label>
-      <select id="accent">
-        <option value="#087cff">أزرق</option>
-        <option value="#7c3aed">بنفسجي</option>
-        <option value="#00a884">أخضر</option>
-        <option value="#e0528c">وردي</option>
-      </select>
+  <section id="tools" class="card section">
+    <h2>🧰 الأدوات</h2>
+    <p>أدوات الموقع المستقلة، من غير حقن أو تعديل ملفات اللعبة.</p>
+    <div class="grid">
+      <div class="tile"><div class="emoji">🎨</div><h3>تخصيص المظهر</h3><p>غيّر لون الواجهة.</p></div>
+      <div class="tile"><div class="emoji">👤</div><h3>معلومات الحساب</h3><p>راجع بريد حسابك.</p></div>
+      <div class="tile"><div class="emoji">🔐</div><h3>الأمان</h3><p>حافظ على سرية بياناتك.</p></div>
+      <div class="tile"><div class="emoji">🌐</div><h3>فتح رابط</h3><p>افتح موقعًا خارجيًا.</p></div>
+    </div>
+    <label for="siteUrl">رابط الموقع</label>
+    <input id="siteUrl" type="url" placeholder="https://example.com">
+    <button type="button" id="openUrl">فتح الرابط</button>
+  </section>
 
-      <button id="applyTheme" type="button">تطبيق اللون</button>
-      <button id="resetTheme" class="secondary" type="button">
-        استعادة اللون الأصلي
-      </button>
-    </section>
+  <section id="profile" class="card section">
+    <h2>👤 حسابي</h2>
+    <p>البريد الإلكتروني:</p>
+    <p id="profileEmail" class="status"></p>
+    <p>حالة الجلسة: <span class="status">مسجّل الدخول</span></p>
+    <button type="button" id="logout" class="secondary">تسجيل الخروج</button>
+  </section>
 
-    <section id="profile" class="card section">
-      <h2>👤 Profile</h2>
-      <p>معلومات الحساب الحالي</p>
-      <p>البريد الإلكتروني: <b id="profileEmail"></b></p>
-      <p>حالة الجلسة: <span class="status">تم تسجيل الدخول</span></p>
-      <button id="logout" class="secondary" type="button">
-        تسجيل الخروج
-      </button>
-    </section>
+  <section id="theme" class="card section">
+    <h2>🎨 المظهر</h2>
+    <p>اختار اللون المناسب ليك.</p>
+    <label for="accent">اللون الأساسي</label>
+    <select id="accent">
+      <option value="#087cff">أزرق</option>
+      <option value="#7c3aed">بنفسجي</option>
+      <option value="#00a884">أخضر</option>
+      <option value="#e0528c">وردي</option>
+      <option value="#f59e0b">برتقالي</option>
+    </select>
+    <button type="button" id="applyTheme">تطبيق اللون</button>
+    <button type="button" id="resetTheme" class="secondary">استعادة اللون الأصلي</button>
+  </section>
 
-    <section id="vpn" class="card section">
-      <h2>🌐 VPN</h2>
-      <p>افتح تطبيق Hiddify الرسمي على جهازك.</p>
+  <section id="activation" class="card section">
+    <h2>🔐 التفعيل</h2>
+    <p class="status">● تسجيل الدخول نشط</p>
+    <p>نظام مفاتيح التفعيل يحتاج ربطًا آمنًا بالخادم قبل اعتماد أي مفتاح.</p>
+  </section>
 
-      <a class="action" href="hiddify://">فتح Hiddify</a>
-
-      <a
-        class="action secondary"
-        href="https://apps.apple.com/eg/search?term=Hiddify"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        الوصول إلى Hiddify في App Store
-      </a>
-
-      <p class="small">
-        تشغيل الاتصال وإدارته يتم من داخل تطبيق Hiddify نفسه.
-      </p>
-    </section>
-  </main>
+  <section id="settings" class="card section">
+    <h2>⚙️ الإعدادات</h2>
+    <p>إعادة لون الواجهة إلى اللون الافتراضي.</p>
+    <button type="button" id="resetAll" class="secondary">إعادة ضبط اللون</button>
+  </section>
+</main>
+<footer>DRIP CAR · لوحة التحكم</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 const SUPABASE_URL = 'https://esozawbvjxwoesqpriyo.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzb3phd2J2anh3b2VzcXByaXlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2MTAxNzMsImV4cCI6MjEwODE4NjE3M30.bbvPvgTql9CXC5R6AP7I5ySmsvXUe-zeikNNkgXtfmY';
 
-const login = document.getElementById('login');
+const loginPanel = document.getElementById('login');
 const dashboard = document.getElementById('dashboard');
 const loginMsg = document.getElementById('loginMsg');
 const loginButton = document.getElementById('loginButton');
+let client = null;
 
-let supabaseClient = null;
-
-function showMessage(message, isError = true) {
-  loginMsg.textContent = message;
-  loginMsg.style.color = isError ? '#ff7777' : '#7db7ff';
+function message(text, error = true) {
+  loginMsg.textContent = text;
+  loginMsg.style.color = error ? '#ff7777' : '#7db7ff';
 }
 
 function showDashboard(user) {
-  login.style.display = 'none';
+  loginPanel.style.display = 'none';
   dashboard.style.display = 'block';
-  document.getElementById('profileEmail').textContent =
-    user.email || 'حساب المستخدم';
-
-  document.querySelectorAll('.section').forEach(section => {
-    section.classList.remove('active');
-  });
-  document.getElementById('theme').classList.add('active');
+  document.getElementById('profileEmail').textContent = user.email || 'حساب المستخدم';
+  showTab('home');
 }
 
 function showLogin() {
   dashboard.style.display = 'none';
-  login.style.display = 'block';
+  loginPanel.style.display = 'block';
   document.getElementById('password').value = '';
 }
 
-async function initialize() {
-  if (!window.supabase) {
-    showMessage('تعذر تحميل خدمة تسجيل الدخول. حدّث الصفحة وحاول مرة أخرى.');
-    return;
-  }
-
-  supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-
-  const { data, error } = await supabaseClient.auth.getSession();
-
-  if (error) {
-    showMessage('تعذر التحقق من الجلسة. حاول تسجيل الدخول.');
-    return;
-  }
-
-  if (data.session) {
-    showDashboard(data.session.user);
-  }
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('active'));
+  const section = document.getElementById(id);
+  if (section) section.classList.add('active');
+  const button = document.querySelector('[data-tab="' + id + '"]');
+  if (button) button.classList.add('active');
 }
+
+document.querySelectorAll('[data-tab]').forEach(button => {
+  button.addEventListener('click', () => showTab(button.dataset.tab));
+});
+document.querySelectorAll('[data-go]').forEach(button => {
+  button.addEventListener('click', () => showTab(button.dataset.go));
+});
 
 document.getElementById('loginForm').addEventListener('submit', async event => {
   event.preventDefault();
-
-  if (!supabaseClient) {
-    showMessage('خدمة تسجيل الدخول غير جاهزة. حدّث الصفحة وحاول مرة أخرى.');
+  if (!client) {
+    message('خدمة الدخول غير جاهزة. حدّث الصفحة وحاول مرة أخرى.');
     return;
   }
-
   loginButton.disabled = true;
   loginButton.textContent = 'جارٍ تسجيل الدخول...';
-  showMessage('', false);
-
+  message('', false);
   try {
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
-
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
-
+    const {data, error} = await client.auth.signInWithPassword({email, password});
     if (error) {
-      showMessage('فشل تسجيل الدخول. تأكد من البريد الإلكتروني وكلمة المرور.');
+      message('تعذر تسجيل الدخول. تأكد من البريد الإلكتروني وكلمة المرور.');
       return;
     }
-
     showDashboard(data.user);
-  } catch (error) {
-    showMessage('حدث خطأ في الاتصال. تحقق من الإنترنت وحاول مرة أخرى.');
+  } catch (e) {
+    message('حدث خطأ في الاتصال. حاول مرة أخرى.');
   } finally {
     loginButton.disabled = false;
     loginButton.textContent = 'تسجيل الدخول';
   }
 });
 
-document.querySelectorAll('[data-tab]').forEach(button => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.section').forEach(section => {
-      section.classList.remove('active');
-    });
-
-    document.getElementById(button.dataset.tab).classList.add('active');
-  });
-});
-
-document.getElementById('applyTheme').addEventListener('click', () => {
-  const color = document.getElementById('accent').value;
+function applyColor(color) {
   document.documentElement.style.setProperty('--accent', color);
-});
-
-document.getElementById('resetTheme').addEventListener('click', () => {
+  document.getElementById('accent').value = color;
+  try { localStorage.setItem('dripCarAccent', color); } catch(e) {}
+}
+function resetTheme() {
   document.documentElement.style.setProperty('--accent', '#087cff');
   document.getElementById('accent').value = '#087cff';
+  try { localStorage.removeItem('dripCarAccent'); } catch(e) {}
+}
+document.getElementById('applyTheme').addEventListener('click', () => {
+  applyColor(document.getElementById('accent').value);
+});
+document.getElementById('resetTheme').addEventListener('click', resetTheme);
+document.getElementById('resetAll').addEventListener('click', resetTheme);
+
+document.getElementById('openUrl').addEventListener('click', () => {
+  try {
+    const url = new URL(document.getElementById('siteUrl').value.trim());
+    if (!['https:', 'http:'].includes(url.protocol)) throw new Error();
+    window.open(url.href, '_blank', 'noopener,noreferrer');
+  } catch(e) {
+    alert('اكتب رابطًا صحيحًا يبدأ بـ https:// أو http://');
+  }
 });
 
 document.getElementById('logout').addEventListener('click', async () => {
-  if (!supabaseClient) return;
-
-  const { error } = await supabaseClient.auth.signOut();
-
+  if (!client) return;
+  const {error} = await client.auth.signOut();
   if (error) {
     alert('تعذر تسجيل الخروج. حاول مرة أخرى.');
     return;
   }
-
   showLogin();
-  showMessage('تم تسجيل الخروج بنجاح.', false);
+  message('تم تسجيل الخروج بنجاح.', false);
 });
 
+async function initialize() {
+  try {
+    const savedColor = localStorage.getItem('dripCarAccent');
+    if (savedColor && /^#[0-9a-f]{6}$/i.test(savedColor)) {
+      document.documentElement.style.setProperty('--accent', savedColor);
+      document.getElementById('accent').value = savedColor;
+    }
+  } catch(e) {}
+
+  if (!window.supabase) {
+    message('تعذر تحميل خدمة الدخول. تحقق من الإنترنت.');
+    return;
+  }
+
+  try {
+    client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const {data, error} = await client.auth.getSession();
+    if (error) {
+      message('تعذر التحقق من الجلسة. سجّل الدخول مرة أخرى.');
+      return;
+    }
+    if (data.session) showDashboard(data.session.user);
+  } catch(e) {
+    message('تعذر الاتصال بخدمة تسجيل الدخول.');
+  }
+}
 initialize();
 </script>
 </body>
