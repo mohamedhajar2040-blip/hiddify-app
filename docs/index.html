@@ -21,7 +21,7 @@ input,button,select{width:100%;padding:13px;margin-top:12px;border-radius:11px;f
 input,select{background:#080f1d;color:white;border:1px solid #293b56}
 button{display:block;text-align:center;border:0;background:var(--accent);color:white;font-weight:bold;cursor:pointer}
 button:disabled{opacity:.6;cursor:wait}
-button[hidden]{display:none!important}
+button[hidden],form[hidden]{display:none!important}
 .secondary{background:#19263a;border:1px solid #2c4668}
 .nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:15px}
 .nav button{font-size:13px;padding:12px 4px;margin:0}
@@ -52,14 +52,29 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
 </header>
 
 <section id="login" class="card">
-  <h2>تسجيل الدخول</h2>
-  <p>سجّل الدخول بحسابك الحالي للمتابعة.</p>
-  <form id="loginForm">
-    <input id="email" type="email" placeholder="البريد الإلكتروني" autocomplete="username" required>
-    <input id="password" type="password" placeholder="كلمة المرور" autocomplete="current-password" required>
-    <button id="loginButton" type="submit">تسجيل الدخول</button>
-  </form>
-  <p id="loginMsg" class="message" role="status"></p>
+  <div id="loginView">
+    <h2>تسجيل الدخول</h2>
+    <p>سجّل الدخول بحسابك الحالي للمتابعة.</p>
+    <form id="loginForm">
+      <input id="email" type="email" placeholder="البريد الإلكتروني" autocomplete="username" required>
+      <input id="password" type="password" placeholder="كلمة المرور" autocomplete="current-password" required>
+      <button id="loginButton" type="submit">تسجيل الدخول</button>
+    </form>
+    <button id="showSignup" type="button" class="secondary">إنشاء حساب جديد</button>
+    <p id="loginMsg" class="message" role="status"></p>
+  </div>
+
+  <div id="signupView" hidden>
+    <h2>إنشاء حساب جديد</h2>
+    <p>أنشئ حسابك باستخدام بريد إلكتروني وكلمة مرور.</p>
+    <form id="signupForm">
+      <input id="signupEmail" type="email" placeholder="البريد الإلكتروني" autocomplete="email" required>
+      <input id="signupPassword" type="password" placeholder="كلمة المرور (8 أحرف على الأقل)" minlength="8" autocomplete="new-password" required>
+      <button id="signupButton" type="submit">إنشاء الحساب</button>
+    </form>
+    <button id="cancelSignup" type="button" class="secondary">رجوع لتسجيل الدخول</button>
+    <p id="signupMsg" class="message" role="status"></p>
+  </div>
 </section>
 
 <main id="dashboard">
@@ -130,8 +145,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
   <section id="activation" class="card section">
     <h2>🔐 التفعيل</h2>
     <p class="status">● تسجيل الدخول نشط</p>
-    <p>سيتم ربط تفعيل المفاتيح بالحساب من خلال تحقق آمن في قاعدة البيانات.</p>
-    <p class="small">إنشاء المفاتيح وإدارتها متاح من قسم الإدارة للحسابات المصرح لها.</p>
+    <p>لو استلمت مفتاح تفعيل من المالك، استخدمه بعد إعداد خدمة التفعيل الآمنة.</p>
+    <p class="small">إنشاء المفاتيح وإدارتها متاح للحسابات المصرح لها فقط.</p>
   </section>
 
   <section id="settings" class="card section">
@@ -143,21 +158,16 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
   <section id="admin" class="card section">
     <h2>🔐 إدارة مفاتيح التفعيل</h2>
     <p>إنشاء المفاتيح ومراجعتها وإيقافها.</p>
-
     <label for="keyDays">مدة صلاحية المفتاح بالأيام</label>
     <input id="keyDays" type="number" min="1" max="3650" value="30" required>
-
     <label for="keyUses">عدد مرات الاستخدام المسموح</label>
     <input id="keyUses" type="number" min="1" max="1000" value="1" required>
-
     <button id="createKey" type="button">إنشاء مفتاح جديد</button>
     <p id="adminMsg" class="message" role="status"></p>
-
     <button id="refreshKeys" type="button" class="secondary">تحديث قائمة المفاتيح</button>
     <div id="keysList" aria-live="polite"></div>
   </section>
 </main>
-
 <footer>DRIP CAR · لوحة التحكم</footer>
 </div>
 
@@ -177,6 +187,19 @@ function message(text, error = true) {
   loginMsg.textContent = text;
   loginMsg.style.color = error ? '#ff7777' : '#7db7ff';
 }
+function signupMessage(text, error = true) {
+  const el = document.getElementById('signupMsg');
+  el.textContent = text;
+  el.style.color = error ? '#ff7777' : '#7db7ff';
+}
+function showSignupView(show) {
+  document.getElementById('loginView').hidden = show;
+  document.getElementById('signupView').hidden = !show;
+  if (show) signupMessage('', false);
+  else message('', false);
+}
+document.getElementById('showSignup').addEventListener('click', () => showSignupView(true));
+document.getElementById('cancelSignup').addEventListener('click', () => showSignupView(false));
 
 function showDashboard(user) {
   loginPanel.style.display = 'none';
@@ -184,26 +207,20 @@ function showDashboard(user) {
   document.getElementById('profileEmail').textContent = user.email || 'حساب المستخدم';
   showTab('home');
 }
-
 function showLogin() {
   dashboard.style.display = 'none';
   loginPanel.style.display = 'block';
   document.getElementById('password').value = '';
+  document.getElementById('signupPassword').value = '';
   adminNav.hidden = true;
   document.getElementById('keysList').replaceChildren();
 }
-
 function showTab(id) {
-  if (id === 'admin' && adminNav.hidden) {
-    id = 'home';
-  }
-
+  if (id === 'admin' && adminNav.hidden) id = 'home';
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('active'));
-
   const section = document.getElementById(id);
   if (section) section.classList.add('active');
-
   const button = document.querySelector('[data-tab="' + id + '"]');
   if (button) button.classList.add('active');
 }
@@ -211,7 +228,6 @@ function showTab(id) {
 document.querySelectorAll('[data-tab]').forEach(button => {
   button.addEventListener('click', async () => {
     const id = button.dataset.tab;
-
     if (id === 'admin') {
       const allowed = await checkAdmin();
       if (!allowed) {
@@ -223,37 +239,30 @@ document.querySelectorAll('[data-tab]').forEach(button => {
       await loadActivationKeys();
       return;
     }
-
     showTab(id);
   });
 });
-
 document.querySelectorAll('[data-go]').forEach(button => {
   button.addEventListener('click', () => showTab(button.dataset.go));
 });
 
 document.getElementById('loginForm').addEventListener('submit', async event => {
   event.preventDefault();
-
   if (!client) {
     message('خدمة الدخول غير جاهزة. حدّث الصفحة وحاول مرة أخرى.');
     return;
   }
-
   loginButton.disabled = true;
   loginButton.textContent = 'جارٍ تسجيل الدخول...';
   message('', false);
-
   try {
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const { data, error } = await client.auth.signInWithPassword({ email, password });
-
     if (error) {
       message('خطأ تسجيل الدخول: ' + error.message);
       return;
     }
-
     showDashboard(data.user);
     await checkAdmin();
   } catch (e) {
@@ -264,21 +273,60 @@ document.getElementById('loginForm').addEventListener('submit', async event => {
   }
 });
 
+document.getElementById('signupForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!client) {
+    signupMessage('خدمة التسجيل غير جاهزة. حدّث الصفحة وحاول مرة أخرى.');
+    return;
+  }
+  const button = document.getElementById('signupButton');
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value;
+  if (password.length < 8) {
+    signupMessage('كلمة المرور لازم تكون 8 أحرف على الأقل.');
+    return;
+  }
+  button.disabled = true;
+  button.textContent = 'جارٍ إنشاء الحساب...';
+  signupMessage('', false);
+  try {
+    const { data, error } = await client.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: window.location.origin + window.location.pathname
+      }
+    });
+    if (error) {
+      signupMessage('تعذر إنشاء الحساب: ' + error.message);
+      return;
+    }
+    if (data.session && data.user) {
+      showDashboard(data.user);
+      await checkAdmin();
+      alert('تم إنشاء الحساب وتسجيل الدخول.');
+    } else {
+      signupMessage('تم إرسال طلب التسجيل. افحص بريدك الإلكتروني لتأكيد الحساب، ثم ارجع وسجّل الدخول.', false);
+    }
+  } catch (e) {
+    signupMessage('حدث خطأ في الاتصال. حاول مرة أخرى.');
+  } finally {
+    button.disabled = false;
+    button.textContent = 'إنشاء الحساب';
+  }
+});
+
 function applyColor(color) {
   document.documentElement.style.setProperty('--accent', color);
   document.getElementById('accent').value = color;
   try { localStorage.setItem('dripCarAccent', color); } catch(e) {}
 }
-
 function resetTheme() {
   document.documentElement.style.setProperty('--accent', '#087cff');
   document.getElementById('accent').value = '#087cff';
   try { localStorage.removeItem('dripCarAccent'); } catch(e) {}
 }
-
-document.getElementById('applyTheme').addEventListener('click', () => {
-  applyColor(document.getElementById('accent').value);
-});
+document.getElementById('applyTheme').addEventListener('click', () => applyColor(document.getElementById('accent').value));
 document.getElementById('resetTheme').addEventListener('click', resetTheme);
 document.getElementById('resetAll').addEventListener('click', resetTheme);
 
@@ -294,37 +342,30 @@ document.getElementById('openUrl').addEventListener('click', () => {
 
 document.getElementById('logout').addEventListener('click', async () => {
   if (!client) return;
-
   const { error } = await client.auth.signOut();
   if (error) {
     alert('تعذر تسجيل الخروج. حاول مرة أخرى.');
     return;
   }
-
   showLogin();
+  showSignupView(false);
   message('تم تسجيل الخروج بنجاح.', false);
 });
 
 async function checkAdmin() {
   adminNav.hidden = true;
-
   if (!client) return false;
-
   try {
     const { data: sessionData, error: sessionError } = await client.auth.getSession();
     if (sessionError || !sessionData.session) return false;
-
     const { data, error } = await client.rpc('admin_is_current_user');
-
     if (error || data !== true) return false;
-
     adminNav.hidden = false;
     return true;
   } catch (e) {
     return false;
   }
 }
-
 function adminMessage(text, error = false) {
   const el = document.getElementById('adminMsg');
   el.textContent = text;
@@ -336,67 +377,48 @@ async function loadActivationKeys() {
     adminMessage('تعذر التحقق من صلاحية الإدارة. سجّل الدخول بحساب الأدمن.', true);
     return;
   }
-
   const list = document.getElementById('keysList');
   list.textContent = 'جارٍ تحميل المفاتيح...';
-
   try {
     const { data, error } = await client.rpc('admin_list_activation_keys');
-
     if (error) {
       list.textContent = 'تعذر تحميل المفاتيح. تحقق من إعدادات Supabase.';
       return;
     }
-
     list.replaceChildren();
-
     if (!data || data.length === 0) {
       list.textContent = 'لا توجد مفاتيح تفعيل حتى الآن.';
       return;
     }
-
     data.forEach(key => {
       const item = document.createElement('div');
       item.className = 'tile';
       item.style.marginTop = '12px';
-
       const code = document.createElement('p');
       code.textContent = 'المفتاح: ' + key.key_code;
-
       const state = document.createElement('p');
       state.textContent = 'الحالة: ' + (key.is_active ? 'نشط' : 'متوقف');
-
       const uses = document.createElement('p');
       uses.textContent = 'الاستخدامات: ' + key.uses_count + ' / ' + key.max_uses;
-
       item.append(code, state, uses);
-
       if (key.expires_at) {
         const expiry = document.createElement('p');
         expiry.textContent = 'ينتهي: ' + new Date(key.expires_at).toLocaleString('ar-EG');
         item.append(expiry);
       }
-
       if (key.is_active) {
         const button = document.createElement('button');
         button.type = 'button';
         button.textContent = 'إيقاف المفتاح';
-
         button.addEventListener('click', async () => {
           button.disabled = true;
-
           try {
-            const { data: ok, error } = await client.rpc(
-              'admin_disable_activation_key',
-              { p_key_id: key.id }
-            );
-
+            const { data: ok, error } = await client.rpc('admin_disable_activation_key', { p_key_id: key.id });
             if (error || !ok) {
               adminMessage('تعذر إيقاف المفتاح.', true);
               button.disabled = false;
               return;
             }
-
             adminMessage('تم إيقاف المفتاح بنجاح.');
             await loadActivationKeys();
           } catch (e) {
@@ -404,10 +426,8 @@ async function loadActivationKeys() {
             button.disabled = false;
           }
         });
-
         item.append(button);
       }
-
       list.append(item);
     });
   } catch (e) {
@@ -420,28 +440,22 @@ document.getElementById('createKey').addEventListener('click', async () => {
     adminMessage('حسابك لا يملك صلاحية الإدارة.', true);
     return;
   }
-
   const days = Number(document.getElementById('keyDays').value);
   const uses = Number(document.getElementById('keyUses').value);
-
   if (!Number.isInteger(days) || days < 1 || days > 3650 ||
       !Number.isInteger(uses) || uses < 1 || uses > 1000) {
     adminMessage('أدخل مدة من 1 إلى 3650 يومًا، واستخدامات من 1 إلى 1000.', true);
     return;
   }
-
   const button = document.getElementById('createKey');
   button.disabled = true;
   button.textContent = 'جارٍ إنشاء المفتاح...';
-
   try {
     const expiry = new Date(Date.now() + days * 86400000).toISOString();
-
     const { data, error } = await client.rpc('admin_create_activation_key', {
       p_expires_at: expiry,
       p_max_uses: uses
     });
-
     if (error) {
       adminMessage(
         error.message && error.message.includes('Admin access required')
@@ -451,7 +465,6 @@ document.getElementById('createKey').addEventListener('click', async () => {
       );
       return;
     }
-
     adminMessage('تم إنشاء المفتاح: ' + data);
     await loadActivationKeys();
   } catch (e) {
@@ -472,22 +485,17 @@ async function initialize() {
       document.getElementById('accent').value = savedColor;
     }
   } catch(e) {}
-
   if (!window.supabase) {
     message('تعذر تحميل خدمة الدخول. تحقق من الإنترنت.');
     return;
   }
-
   try {
     client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
     const { data, error } = await client.auth.getSession();
-
     if (error) {
       message('تعذر التحقق من الجلسة. سجّل الدخول مرة أخرى.');
       return;
     }
-
     if (data.session) {
       showDashboard(data.session.user);
       await checkAdmin();
@@ -496,7 +504,6 @@ async function initialize() {
     message('تعذر الاتصال بخدمة تسجيل الدخول.');
   }
 }
-
 initialize();
 </script>
 </body>
