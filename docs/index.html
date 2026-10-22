@@ -70,6 +70,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
     <button data-tab="theme" type="button">المظهر</button>
     <button data-tab="activation" type="button">التفعيل</button>
     <button data-tab="settings" type="button">الإعدادات</button>
+    <button data-tab="admin" type="button" id="adminNav" hidden>الإدارة</button>
   </nav>
 
   <section id="home" class="card section active">
@@ -128,6 +129,27 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
     <p>إعادة لون الواجهة إلى اللون الافتراضي.</p>
     <button type="button" id="resetAll" class="secondary">إعادة ضبط اللون</button>
   </section>
+  
+<section id="admin" class="card section">
+  <h2>🔐 إدارة مفاتيح التفعيل</h2>
+  <p>إنشاء المفاتيح ومراجعتها وإيقافها.</p>
+
+  <label for="keyDays">مدة صلاحية المفتاح بالأيام</label>
+  <input id="keyDays" type="number" min="1" max="3650" value="30">
+
+  <label for="keyUses">عدد مرات الاستخدام المسموح</label>
+  <input id="keyUses" type="number" min="1" max="1000" value="1">
+
+  <button id="createKey" type="button">إنشاء مفتاح جديد</button>
+  <p id="adminMsg" class="message" role="status"></p>
+
+  <button id="refreshKeys" type="button" class="secondary">
+    تحديث قائمة المفاتيح
+  </button>
+
+  <div id="keysList"></div>
+</section>
+
 </main>
 <footer>DRIP CAR · لوحة التحكم</footer>
 </div>
