@@ -203,6 +203,66 @@ footer {
 </nav>
 
   </nav>
+  
+<section id="setup" class="card section">
+  <div class="brand">
+    <div class="logo">DW</div>
+    <div>
+      <h2>DRIP WIRE</h2>
+      <p>Configuration Setup</p>
+    </div>
+  </div>
+
+  <div class="tile">
+    <p>SUBSCRIPTION</p>
+    <h3>Account Plan</h3>
+    <p id="planStatus">تحقق من حالة اشتراكك من حسابك</p>
+  </div>
+
+  <label for="serverSelect">Select Server</label>
+  <select id="serverSelect">
+    <option value="eu">Europe #0</option>
+    <option value="us">United States #0</option>
+    <option value="asia">Asia #0</option>
+  </select>
+
+  <div class="tile">
+    <p>DEVICE STATUS</p>
+    <h3 id="deviceStatus">غير مرتبط</h3>
+    <p>اختيار السيرفر وحده لا ينشئ اتصال VPN.</p>
+  </div>
+
+  <button type="button" id="installConfig">
+    Install Config
+  </button>
+  <p id="setupMessage" class="message"></p>
+</section>
+
+<section id="features" class="card section">
+  <h2>Features</h2>
+  <div class="grid">
+    <div class="tile">
+      <div class="emoji">🌐</div>
+      <h3>Server Selection</h3>
+      <p>اختيار منطقة السيرفر.</p>
+    </div>
+    <div class="tile">
+      <div class="emoji">🔒</div>
+      <h3>Privacy</h3>
+      <p>حافظ على بيانات حسابك سرية.</p>
+    </div>
+    <div class="tile">
+      <div class="emoji">📱</div>
+      <h3>Device Setup</h3>
+      <p>إعداد الجهاز عند توفر ملف اتصال صالح.</p>
+    </div>
+    <div class="tile">
+      <div class="emoji">⚡</div>
+      <h3>Connection</h3>
+      <p>يتطلب خادمًا حقيقيًا وإعدادات اتصال صحيحة.</p>
+    </div>
+  </div>
+</section>
   <section id="home" class="card section active">
     <h2>🏠 الرئيسية</h2>
     <p>مرحبًا بك في DRIP CAR.</p>
