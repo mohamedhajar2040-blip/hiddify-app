@@ -609,6 +609,26 @@ document.getElementById('logout').addEventListener('click', async () => {
     alert('تعذر تسجيل الخروج. حاول مرة أخرى.');
     return;
   }
+  
+const logoutNav = document.getElementById('logoutNav');
+
+if (logoutNav) {
+  logoutNav.addEventListener('click', async () => {
+    if (!client) return;
+
+    const { error } = await client.auth.signOut();
+
+    if (error) {
+      alert('تعذر تسجيل الخروج. حاول مرة أخرى.');
+      return;
+    }
+
+    showLogin();
+    showSignupView(false);
+    message('تم تسجيل الخروج بنجاح.', false);
+  });
+}
+
   showLogin();
   showSignupView(false);
   message('تم تسجيل الخروج بنجاح.', false);
