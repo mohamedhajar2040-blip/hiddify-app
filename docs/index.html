@@ -3,168 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080b14">
-<title>DRIP BOX</title>
+<meta name="theme-color" content="#080809">
+<title>DRIP WIRE</title>
 <style>
-
-:root {
-  --bg: #080809;
-  --card: #19191c;
-  --accent: #8038f5;
-  --text: #f5f5f7;
-  --muted: #85858f;
-  --border: #2b2b30;
-  --success: #38dc87;
-}
-* { box-sizing: border-box; }
-html { min-height: 100%; scroll-behavior: smooth; }
-body {
-  margin: 0;
-  padding: 12px 16px 110px;
-  min-height: 100vh;
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-}
-.wrap { max-width: 620px; margin: 0 auto; }
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 16px;
-  box-shadow: 0 8px 24px #0002;
-}
-.brand { display: flex; align-items: center; gap: 14px; }
-.logo {
-  width: 58px;
-  height: 58px;
-  flex-shrink: 0;
-  border-radius: 15px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(145deg, #d91bff, #6520c9);
-  color: white;
-  font-size: 19px;
-  font-weight: 900;
-  box-shadow: 0 0 22px #8b2bff25;
-}
-h1 { font-size: 24px; margin: 0; letter-spacing: 1px; }
-h2 { font-size: 21px; margin: 5px 0 12px; }
-p { color: var(--muted); line-height: 1.7; margin: 8px 0; }
-input, button, select {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  border-radius: 12px;
-  font: inherit;
-  font-size: 15px;
-}
-input, select {
-  background: #101013;
-  color: white;
-  border: 1px solid #3b3b42;
-}
-input:focus, select:focus {
-  outline: 2px solid #8038f566;
-  border-color: var(--accent);
-}
-button {
-  display: block;
-  text-align: center;
-  border: 0;
-  background: var(--accent);
-  color: white;
-  font-weight: 650;
-  cursor: pointer;
-  transition: opacity .2s;
-}
-button:active { opacity: .8; }
-button:disabled { opacity: .6; cursor: wait; }
-button[hidden], form[hidden] { display: none !important; }
-.secondary {
-  background: #252529;
-  border: 1px solid #38383e;
-}
-.nav {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 7px;
-  margin: 18px 0;
-  padding: 8px;
-  background: #101012;
-  border: 1px solid #27272b;
-  border-radius: 16px;
-}
-.nav button {
-  font-size: 12px;
-  padding: 12px 4px;
-  margin: 0;
-  background: transparent;
-  color: #a4a4ad;
-  border-radius: 10px;
-}
-.nav button.active {
-  background: #27183f;
-  color: #a66aff;
-  outline: 1px solid #542d8b;
-}
-.section { display: none; }
-.section.active { display: block; }
-#dashboard { display: none; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-.tile {
-  background: #101013;
-  border: 1px solid #303035;
-  padding: 15px 12px;
-  border-radius: 15px;
-  overflow-wrap: anywhere;
-}
-.tile .emoji { font-size: 25px; }
-.tile h3 { font-size: 15px; margin: 9px 0 4px; }
-.tile p { font-size: 12px; margin: 0; }
-label {
-  display: block;
-  margin-top: 15px;
-  color: var(--muted);
-  font-size: 14px;
-}
-.status { color: #b58aff; font-size: 13px; }
-.message { font-size: 13px; overflow-wrap: anywhere; }
-footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  padding: 15px;
-}
-#accountStatus { color: var(--success); }
-#activationStatus { color: #b58aff; }
-#adminMsg { overflow-wrap: anywhere; }
-@media(max-width:380px) {
-  body { padding: 8px 10px 100px; }
-  .card { padding: 15px; }
-  .nav { gap: 4px; }
-  .nav button { font-size: 11px; }
-}
-
+:root{--bg:#080809;--card:#19191c;--accent:#8038f5;--text:#f5f5f7;--muted:#85858f;--border:#2b2b30;--success:#38dc87}
+*{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth}
+body{margin:0;padding:12px 16px 110px;min-height:100vh;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:620px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 8px 24px #0002}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:58px;height:58px;flex-shrink:0;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#d91bff,#6520c9);color:white;font-size:19px;font-weight:900;box-shadow:0 0 22px #8b2bff25}
+h1{font-size:24px;margin:0;letter-spacing:1px}h2{font-size:21px;margin:5px 0 12px}p{color:var(--muted);line-height:1.7;margin:8px 0}
+input,button,select{width:100%;padding:14px;margin-top:12px;border-radius:12px;font:inherit;font-size:15px}
+input,select{background:#101013;color:white;border:1px solid #3b3b42}
+input:focus,select:focus{outline:2px solid #8038f566;border-color:var(--accent)}
+button{display:block;text-align:center;border:0;background:var(--accent);color:white;font-weight:650;cursor:pointer;transition:opacity .2s}
+button:active{opacity:.8}button:disabled{opacity:.6;cursor:wait}button[hidden],form[hidden],[hidden]{display:none!important}
+.secondary{background:#252529;border:1px solid #38383e}
+.nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:18px 0;padding:8px;background:#101012;border:1px solid #27272b;border-radius:16px}
+.nav button{font-size:12px;padding:12px 4px;margin:0;background:transparent;color:#a4a4ad;border-radius:10px}
+.nav button.active{background:#27183f;color:#c29aff;outline:1px solid #542d8b}
+.section{display:none}.section.active{display:block}#dashboard{display:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{background:#101013;border:1px solid #303035;padding:15px 12px;border-radius:15px;overflow-wrap:anywhere}
+.tile .emoji{font-size:25px}.tile h3{font-size:15px;margin:9px 0 4px}.tile p{font-size:12px;margin:0}
+label{display:block;margin-top:15px;color:var(--muted);font-size:14px}
+.status{color:#b58aff;font-size:13px}.message{font-size:13px;overflow-wrap:anywhere}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:15px}
+#accountStatus{color:var(--success)}#activationStatus{color:#b58aff}#adminMsg{overflow-wrap:anywhere}
+@media(max-width:380px){body{padding:8px 10px 100px}.card{padding:15px}.nav{gap:4px}.nav button{font-size:10px;padding:11px 2px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="card">
-  <div class="brand">
-    <div class="logo">DRIP</div>
-    <div><h1>DRIP CAR</h1><p>لوحة التحكم الخاصة بك</p></div>
-  </div>
-</header>
+<header class="card"><div class="brand"><div class="logo">DW</div><div><h1>DRIP WIRE</h1><p>لوحة التحكم الخاصة بك</p></div></div></header>
+
 <section id="login" class="card">
   <div id="loginView">
-    <h2>تسجيل الدخول</h2>
-    <p>سجّل الدخول بحسابك الحالي للمتابعة.</p>
+    <h2>تسجيل الدخول</h2><p>سجّل الدخول بحسابك الحالي للمتابعة.</p>
     <form id="loginForm">
       <input id="email" type="email" placeholder="البريد الإلكتروني" autocomplete="username" required>
       <input id="password" type="password" placeholder="كلمة المرور" autocomplete="current-password" required>
@@ -174,8 +51,7 @@ footer {
     <p id="loginMsg" class="message" role="status"></p>
   </div>
   <div id="signupView" hidden>
-    <h2>إنشاء حساب جديد</h2>
-    <p>أنشئ حسابك باستخدام بريد إلكتروني وكلمة مرور.</p>
+    <h2>إنشاء حساب جديد</h2><p>أنشئ حسابك باستخدام بريد إلكتروني وكلمة مرور.</p>
     <form id="signupForm">
       <input id="signupEmail" type="email" placeholder="البريد الإلكتروني" autocomplete="email" required>
       <input id="signupPassword" type="password" placeholder="كلمة المرور (8 أحرف على الأقل)" minlength="8" autocomplete="new-password" required>
@@ -185,158 +61,92 @@ footer {
     <p id="signupMsg" class="message" role="status"></p>
   </div>
 </section>
+
 <main id="dashboard">
   <section class="card">
-    <h2>أهلًا بيك 👋</h2>
-    <p>إدارة حسابك وأدواتك من مكان واحد.</p>
+    <h2>أهلًا بيك 👋</h2><p>إدارة حسابك وأدواتك من مكان واحد.</p>
     <p id="accountStatus" class="status">جارٍ التحقق من حالة الحساب...</p>
     <div class="grid">
       <div class="tile"><div class="emoji">👤</div><h3>حسابك</h3><p>معلومات حسابك والجلسة.</p></div>
       <div class="tile"><div class="emoji">🧰</div><h3>الأدوات</h3><p>إعدادات مستقلة للموقع.</p></div>
     </div>
   </section>
- 
-<nav class="nav">
-  <button class="active" data-tab="setup" type="button">Setup</button>
-  <button data-tab="features" type="button">Features</button>
-  <button id="logoutNav" type="button">Logout</button>
-</nav>
 
+  <nav class="nav" aria-label="التنقل">
+    <button data-tab="setup" type="button">Setup</button>
+    <button data-tab="features" type="button">Features</button>
+    <button data-tab="profile" type="button">حسابي</button>
+    <button id="adminNav" data-tab="admin" type="button" hidden>Admin</button>
+    <button id="logoutNav" type="button">Logout</button>
   </nav>
-  
-<section id="setup" class="card section">
-  <div class="brand">
-    <div class="logo">DW</div>
-    <div>
-      <h2>DRIP WIRE</h2>
-      <p>Configuration Setup</p>
-    </div>
-  </div>
 
-  <div class="tile">
-    <p>SUBSCRIPTION</p>
-    <h3>Account Plan</h3>
-    <p id="planStatus">تحقق من حالة اشتراكك من حسابك</p>
-  </div>
+  <section id="setup" class="card section">
+    <div class="brand"><div class="logo">DW</div><div><h2>DRIP WIRE</h2><p>Configuration Setup</p></div></div>
+    <div class="tile"><p>SUBSCRIPTION</p><h3>Account Plan</h3><p id="planStatus">تحقق من حالة اشتراكك من حسابك</p></div>
+    <label for="serverSelect">Select Server</label>
+    <select id="serverSelect">
+      <option value="eu">Europe #0</option><option value="us">United States #0</option><option value="asia">Asia #0</option>
+    </select>
+    <div class="tile"><p>DEVICE STATUS</p><h3 id="deviceStatus">غير مرتبط</h3><p>اختيار السيرفر وحده لا ينشئ اتصال VPN.</p></div>
+    <button type="button" id="installConfig">Install Config</button>
+    <p id="setupMessage" class="message" role="status"></p>
+  </section>
 
-  <label for="serverSelect">Select Server</label>
-  <select id="serverSelect">
-    <option value="eu">Europe #0</option>
-    <option value="us">United States #0</option>
-    <option value="asia">Asia #0</option>
-  </select>
+  <section id="features" class="card section">
+    <h2>Features</h2>
+    <div class="grid">
+      <div class="tile"><div class="emoji">🌐</div><h3>Server Selection</h3><p>اختيار منطقة السيرفر.</p></div>
+      <div class="tile"><div class="emoji">🔒</div><h3>Privacy</h3><p>حافظ على بيانات حسابك سرية.</p></div>
+      <div class="tile"><div class="emoji">📱</div><h3>Device Setup</h3><p>إعداد الجهاز عند توفر ملف اتصال صالح.</p></div>
+      <div class="tile"><div class="emoji">⚡</div><h3>Connection</h3><p>يتطلب خادمًا حقيقيًا وإعدادات اتصال صحيحة.</p></div>
+    </div>
+  </section>
 
-  <div class="tile">
-    <p>DEVICE STATUS</p>
-    <h3 id="deviceStatus">غير مرتبط</h3>
-    <p>اختيار السيرفر وحده لا ينشئ اتصال VPN.</p>
-  </div>
-
-  <button type="button" id="installConfig">
-    Install Config
-  </button>
-  <p id="setupMessage" class="message"></p>
-</section>
-
-<section id="features" class="card section">
-  <h2>Features</h2>
-  <div class="grid">
-    <div class="tile">
-      <div class="emoji">🌐</div>
-      <h3>Server Selection</h3>
-      <p>اختيار منطقة السيرفر.</p>
-    </div>
-    <div class="tile">
-      <div class="emoji">🔒</div>
-      <h3>Privacy</h3>
-      <p>حافظ على بيانات حسابك سرية.</p>
-    </div>
-    <div class="tile">
-      <div class="emoji">📱</div>
-      <h3>Device Setup</h3>
-      <p>إعداد الجهاز عند توفر ملف اتصال صالح.</p>
-    </div>
-    <div class="tile">
-      <div class="emoji">⚡</div>
-      <h3>Connection</h3>
-      <p>يتطلب خادمًا حقيقيًا وإعدادات اتصال صحيحة.</p>
-    </div>
-  </div>
-</section>
   <section id="home" class="card section active">
-    <h2>🏠 الرئيسية</h2>
-    <p>مرحبًا بك في DRIP CAR.</p>
-    <p>استخدم الأقسام لإدارة إعدادات واجهتك وحسابك.</p>
+    <h2>🏠 الرئيسية</h2><p>مرحبًا بك في DRIP WIRE.</p><p>استخدم الأقسام لإدارة إعدادات واجهتك وحسابك.</p>
     <button type="button" data-go="tools">استكشاف الأدوات</button>
   </section>
   <section id="tools" class="card section">
-    <h2>🧰 الأدوات</h2>
-    <p>أدوات الموقع المستقلة، من غير حقن أو تعديل ملفات اللعبة.</p>
+    <h2>🧰 الأدوات</h2><p>أدوات الموقع المستقلة، من غير حقن أو تعديل ملفات اللعبة.</p>
     <div class="grid">
       <div class="tile"><div class="emoji">🎨</div><h3>تخصيص المظهر</h3><p>غيّر لون الواجهة.</p></div>
       <div class="tile"><div class="emoji">👤</div><h3>معلومات الحساب</h3><p>راجع بريد حسابك.</p></div>
       <div class="tile"><div class="emoji">🔐</div><h3>الأمان</h3><p>حافظ على سرية بياناتك.</p></div>
       <div class="tile"><div class="emoji">🌐</div><h3>فتح رابط</h3><p>افتح موقعًا خارجيًا.</p></div>
     </div>
-    <label for="siteUrl">رابط الموقع</label>
-    <input id="siteUrl" type="url" placeholder="https://example.com">
+    <label for="siteUrl">رابط الموقع</label><input id="siteUrl" type="url" placeholder="https://example.com">
     <button type="button" id="openUrl">فتح الرابط</button>
   </section>
   <section id="profile" class="card section">
-    <h2>👤 حسابي</h2>
-    <p>البريد الإلكتروني:</p>
-    <p id="profileEmail" class="status"></p>
+    <h2>👤 حسابي</h2><p>البريد الإلكتروني:</p><p id="profileEmail" class="status"></p>
     <p>حالة الحساب: <span id="profileStatus" class="status">جارٍ التحقق...</span></p>
     <button type="button" id="logout" class="secondary">تسجيل الخروج</button>
   </section>
   <section id="theme" class="card section">
-    <h2>🎨 المظهر</h2>
-    <p>اختار اللون المناسب ليك.</p>
+    <h2>🎨 المظهر</h2><p>اختار اللون المناسب ليك.</p>
     <label for="accent">اللون الأساسي</label>
-    <select id="accent">
-      <option value="#087cff">أزرق</option>
-      <option value="#7c3aed">بنفسجي</option>
-      <option value="#00a884">أخضر</option>
-      <option value="#e0528c">وردي</option>
-      <option value="#f59e0b">برتقالي</option>
-    </select>
-    <button type="button" id="applyTheme">تطبيق اللون</button>
-    <button type="button" id="resetTheme" class="secondary">استعادة اللون الأصلي</button>
+    <select id="accent"><option value="#087cff">أزرق</option><option value="#7c3aed">بنفسجي</option><option value="#00a884">أخضر</option><option value="#e0528c">وردي</option><option value="#f59e0b">برتقالي</option></select>
+    <button type="button" id="applyTheme">تطبيق اللون</button><button type="button" id="resetTheme" class="secondary">استعادة اللون الأصلي</button>
   </section>
   <section id="activation" class="card section">
-    <h2>🔐 تفعيل الحساب</h2>
-    <p id="activationStatus" class="status">جارٍ التحقق من حالة التفعيل...</p>
-    <div id="activationFormArea" hidden>
-      <p>أدخل مفتاح التفعيل الذي استلمته من مالك الموقع.</p>
-      <form id="redeemForm">
-        <label for="activationCode">مفتاح التفعيل</label>
-        <input id="activationCode" type="text" maxlength="200" autocomplete="off" placeholder="اكتب مفتاح التفعيل هنا" required>
-        <button id="redeemButton" type="submit">تفعيل الحساب</button>
-      </form>
+    <h2>🔐 تفعيل الحساب</h2><p id="activationStatus" class="status">جارٍ التحقق من حالة التفعيل...</p>
+    <div id="activationFormArea" hidden><p>أدخل مفتاح التفعيل الذي استلمته من مالك الموقع.</p>
+      <form id="redeemForm"><label for="activationCode">مفتاح التفعيل</label><input id="activationCode" type="text" maxlength="200" autocomplete="off" placeholder="اكتب مفتاح التفعيل هنا" required><button id="redeemButton" type="submit">تفعيل الحساب</button></form>
     </div>
-    <p id="activationMsg" class="message" role="status"></p>
-    <p class="small">لو ما عندكش مفتاح، تواصل مع مالك الموقع.</p>
+    <p id="activationMsg" class="message" role="status"></p><p class="small">لو ما عندكش مفتاح، تواصل مع مالك الموقع.</p>
   </section>
-  <section id="settings" class="card section">
-    <h2>⚙️ الإعدادات</h2>
-    <p>إعادة لون الواجهة إلى اللون الافتراضي.</p>
-    <button type="button" id="resetAll" class="secondary">إعادة ضبط اللون</button>
-  </section>
+  <section id="settings" class="card section"><h2>⚙️ الإعدادات</h2><p>إعادة لون الواجهة إلى اللون الافتراضي.</p><button type="button" id="resetAll" class="secondary">إعادة ضبط اللون</button></section>
   <section id="admin" class="card section">
-    <h2>🔐 إدارة مفاتيح التفعيل</h2>
-    <p>إنشاء المفاتيح ومراجعتها وإيقافها.</p>
-    <label for="keyDays">مدة صلاحية المفتاح بالأيام</label>
-    <input id="keyDays" type="number" min="1" max="3650" value="30" required>
-    <label for="keyUses">عدد مرات الاستخدام المسموح</label>
-    <input id="keyUses" type="number" min="1" max="1000" value="1" required>
-    <button id="createKey" type="button">إنشاء مفتاح جديد</button>
-    <p id="adminMsg" class="message" role="status"></p>
-    <button id="refreshKeys" type="button" class="secondary">تحديث قائمة المفاتيح</button>
-    <div id="keysList" aria-live="polite"></div>
+    <h2>🔐 إدارة مفاتيح التفعيل</h2><p>إنشاء المفاتيح ومراجعتها وإيقافها.</p>
+    <label for="keyDays">مدة صلاحية المفتاح بالأيام</label><input id="keyDays" type="number" min="1" max="3650" value="30" required>
+    <label for="keyUses">عدد مرات الاستخدام المسموح</label><input id="keyUses" type="number" min="1" max="1000" value="1" required>
+    <button id="createKey" type="button">إنشاء مفتاح جديد</button><p id="adminMsg" class="message" role="status"></p>
+    <button id="refreshKeys" type="button" class="secondary">تحديث قائمة المفاتيح</button><div id="keysList" aria-live="polite"></div>
   </section>
 </main>
-<footer>DRIP CAR · لوحة التحكم</footer>
+<footer>DRIP WIRE · لوحة التحكم</footer>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL = 'https://esozawbvjxwoesqpriyo.supabase.co';
@@ -350,6 +160,7 @@ let client = null;
 let currentUser = null;
 let isAdmin = false;
 let isActivated = false;
+
 function message(text, error = true) {
   loginMsg.textContent = text;
   loginMsg.style.color = error ? '#ff7777' : '#7db7ff';
@@ -377,6 +188,7 @@ function showSignupView(show) {
 }
 document.getElementById('showSignup').addEventListener('click', () => showSignupView(true));
 document.getElementById('cancelSignup').addEventListener('click', () => showSignupView(false));
+
 function updateAccessUI() {
   const status = document.getElementById('accountStatus');
   const profileStatus = document.getElementById('profileStatus');
@@ -398,11 +210,12 @@ function updateAccessUI() {
     activationStatus.textContent = 'حسابك غير مفعّل. أدخل مفتاحًا صالحًا للمتابعة.';
     activationArea.hidden = false;
   }
-  document.querySelectorAll('[data-tab]').forEach(button => {
+  document.querySelectorAll('.nav [data-tab]').forEach(button => {
     const id = button.dataset.tab;
     button.hidden = id === 'admin' ? !isAdmin :
       (!isAdmin && !isActivated && !['activation','profile'].includes(id));
   });
+  if (adminNav) adminNav.hidden = !isAdmin;
 }
 function showDashboard(user) {
   currentUser = user;
@@ -418,51 +231,31 @@ function showLogin() {
   loginPanel.style.display = 'block';
   document.getElementById('password').value = '';
   document.getElementById('signupPassword').value = '';
-  adminNav.hidden = true;
+  if (adminNav) adminNav.hidden = true;
   document.getElementById('keysList').replaceChildren();
   document.getElementById('activationCode').value = '';
 }
-
 function showTab(id) {
   if (id === 'admin' && !isAdmin) id = 'activation';
-
-  if (
-    !isAdmin &&
-    !isActivated &&
-!['activation', 'profile', 'setup', 'features'].includes(id)
-  ) {
-    id = 'activation';
-  }
-
-  document.querySelectorAll('.section').forEach(s => {
-    s.classList.remove('active');
-  });
-
-  document.querySelectorAll('[data-tab]').forEach(b => {
-    b.classList.remove('active');
-  });
-
+  if (!isAdmin && !isActivated && !['activation','profile'].includes(id)) id = 'activation';
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav [data-tab]').forEach(b => b.classList.remove('active'));
   const section = document.getElementById(id);
   if (section) section.classList.add('active');
-
-  const button = document.querySelector(
-    '.nav [data-tab="' + id + '"]'
-  );
+  const button = document.querySelector('.nav [data-tab="' + id + '"]');
   if (button) button.classList.add('active');
 }
 async function checkAdmin() {
-  adminNav.hidden = true;
+  if (adminNav) adminNav.hidden = true;
   if (!client) return false;
   try {
     const { data: sessionData, error: sessionError } = await client.auth.getSession();
     if (sessionError || !sessionData.session) return false;
     const { data, error } = await client.rpc('admin_is_current_user');
     if (error || data !== true) return false;
-    adminNav.hidden = false;
+    if (adminNav) adminNav.hidden = false;
     return true;
-  } catch (e) {
-    return false;
-  }
+  } catch (e) { return false; }
 }
 async function refreshAccountState() {
   if (!client || !currentUser) return false;
@@ -474,171 +267,98 @@ async function refreshAccountState() {
     return true;
   }
   try {
-    const { data, error } = await client
-      .from('user_permissions')
-      .select('is_activated')
-      .eq('user_id', currentUser.id)
-      .maybeSingle();
+    const { data, error } = await client.from('user_permissions').select('is_activated').eq('user_id', currentUser.id).maybeSingle();
     if (error) {
-      isActivated = false;
-      updateAccessUI();
+      isActivated = false; updateAccessUI();
       activationMessage('تعذر التحقق من حالة التفعيل. حاول مرة أخرى.', true);
-      showTab('activation');
-      return false;
+      showTab('activation'); return false;
     }
     isActivated = !!(data && data.is_activated === true);
     updateAccessUI();
     showTab(isActivated ? 'home' : 'activation');
     return isActivated;
   } catch (e) {
-    isActivated = false;
-    updateAccessUI();
-    showTab('activation');
+    isActivated = false; updateAccessUI(); showTab('activation');
     activationMessage('حدث خطأ أثناء التحقق من الحساب.', true);
     return false;
   }
 }
-document.querySelectorAll('[data-tab]').forEach(button => {
+document.querySelectorAll('.nav [data-tab]').forEach(button => {
   button.addEventListener('click', async () => {
     const id = button.dataset.tab;
     if (id === 'admin') {
       if (!await checkAdmin()) {
-        isAdmin = false;
-        updateAccessUI();
-        showTab('activation');
-        adminMessage('حسابك لا يملك صلاحية الإدارة.', true);
-        return;
+        isAdmin = false; updateAccessUI(); showTab('activation');
+        adminMessage('حسابك لا يملك صلاحية الإدارة.', true); return;
       }
-      isAdmin = true;
-      updateAccessUI();
-      showTab('admin');
-      await loadActivationKeys();
-      return;
+      isAdmin = true; updateAccessUI(); showTab('admin'); await loadActivationKeys(); return;
     }
     if (!isAdmin && !isActivated && !['activation','profile'].includes(id)) {
-      showTab('activation');
-      return;
+      showTab('activation'); return;
     }
     showTab(id);
   });
 });
-document.querySelectorAll('[data-go]').forEach(button => {
-  button.addEventListener('click', () => showTab(button.dataset.go));
-});
+document.querySelectorAll('[data-go]').forEach(button => button.addEventListener('click', () => showTab(button.dataset.go)));
+
 document.getElementById('loginForm').addEventListener('submit', async event => {
   event.preventDefault();
-  if (!client) {
-    message('خدمة الدخول غير جاهزة. حدّث الصفحة وحاول مرة أخرى.');
-    return;
-  }
-  loginButton.disabled = true;
-  loginButton.textContent = 'جارٍ تسجيل الدخول...';
-  message('', false);
+  if (!client) { message('خدمة الدخول غير جاهزة. حدّث الصفحة وحاول مرة أخرى.'); return; }
+  loginButton.disabled = true; loginButton.textContent = 'جارٍ تسجيل الدخول...'; message('', false);
   try {
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const { data, error } = await client.auth.signInWithPassword({ email, password });
-    if (error) {
-      message('خطأ تسجيل الدخول: ' + error.message);
-      return;
-    }
-    showDashboard(data.user);
-    await refreshAccountState();
-  } catch (e) {
-    message('حدث خطأ في الاتصال. حاول مرة أخرى.');
-  } finally {
-    loginButton.disabled = false;
-    loginButton.textContent = 'تسجيل الدخول';
-  }
+    if (error) { message('خطأ تسجيل الدخول: ' + error.message); return; }
+    showDashboard(data.user); await refreshAccountState();
+  } catch (e) { message('حدث خطأ في الاتصال. حاول مرة أخرى.'); }
+  finally { loginButton.disabled = false; loginButton.textContent = 'تسجيل الدخول'; }
 });
 document.getElementById('signupForm').addEventListener('submit', async event => {
   event.preventDefault();
-  if (!client) {
-    signupMessage('خدمة التسجيل غير جاهزة. حدّث الصفحة وحاول مرة أخرى.');
-    return;
-  }
+  if (!client) { signupMessage('خدمة التسجيل غير جاهزة. حدّث الصفحة وحاول مرة أخرى.'); return; }
   const button = document.getElementById('signupButton');
   const email = document.getElementById('signupEmail').value.trim();
   const password = document.getElementById('signupPassword').value;
-  if (password.length < 8) {
-    signupMessage('كلمة المرور لازم تكون 8 أحرف على الأقل.');
-    return;
-  }
-  button.disabled = true;
-  button.textContent = 'جارٍ إنشاء الحساب...';
-  signupMessage('', false);
+  if (password.length < 8) { signupMessage('كلمة المرور لازم تكون 8 أحرف على الأقل.'); return; }
+  button.disabled = true; button.textContent = 'جارٍ إنشاء الحساب...'; signupMessage('', false);
   try {
-    const { data, error } = await client.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: window.location.origin + window.location.pathname
-      }
-    });
-    if (error) {
-      signupMessage('تعذر إنشاء الحساب: ' + error.message);
-      return;
-    }
+    const { data, error } = await client.auth.signUp({ email, password, options: { emailRedirectTo: window.location.origin + window.location.pathname } });
+    if (error) { signupMessage('تعذر إنشاء الحساب: ' + error.message); return; }
     if (data.session && data.user) {
-      showDashboard(data.user);
-      await refreshAccountState();
+      showDashboard(data.user); await refreshAccountState();
       signupMessage('تم إنشاء الحساب. أدخل مفتاح التفعيل للمتابعة.', false);
-    } else {
-      signupMessage('تم إرسال طلب التسجيل. افحص بريدك لتأكيد الحساب، ثم ارجع وسجّل الدخول.', false);
-    }
-  } catch (e) {
-    signupMessage('حدث خطأ في الاتصال. حاول مرة أخرى.');
-  } finally {
-    button.disabled = false;
-    button.textContent = 'إنشاء الحساب';
-  }
+    } else signupMessage('تم إرسال طلب التسجيل. افحص بريدك لتأكيد الحساب، ثم ارجع وسجّل الدخول.', false);
+  } catch (e) { signupMessage('حدث خطأ في الاتصال. حاول مرة أخرى.'); }
+  finally { button.disabled = false; button.textContent = 'إنشاء الحساب'; }
 });
 document.getElementById('redeemForm').addEventListener('submit', async event => {
   event.preventDefault();
-  if (!client || !currentUser) {
-    activationMessage('سجّل الدخول أولًا.', true);
-    return;
-  }
+  if (!client || !currentUser) { activationMessage('سجّل الدخول أولًا.', true); return; }
   const code = document.getElementById('activationCode').value.trim();
-  if (!code) {
-    activationMessage('اكتب مفتاح التفعيل أولًا.', true);
-    return;
-  }
+  if (!code) { activationMessage('اكتب مفتاح التفعيل أولًا.', true); return; }
   const button = document.getElementById('redeemButton');
-  button.disabled = true;
-  button.textContent = 'جارٍ التحقق من المفتاح...';
-  activationMessage('', false);
+  button.disabled = true; button.textContent = 'جارٍ التحقق من المفتاح...'; activationMessage('', false);
   try {
-    const { data, error } = await client.rpc('redeem_activation_key', {
-      p_key_code: code
-    });
-    if (error) {
-      activationMessage('تعذر التفعيل. تأكد من إعدادات Supabase وحاول مرة أخرى.', true);
-      return;
-    }
-    if (!data || data.success !== true) {
-      activationMessage(data?.message || 'المفتاح غير صالح أو انتهت صلاحيته.', true);
-      return;
-    }
+    const { data, error } = await client.rpc('redeem_activation_key', { p_key_code: code });
+    if (error) { activationMessage('تعذر التفعيل. تأكد من إعدادات Supabase وحاول مرة أخرى.', true); return; }
+    if (!data || data.success !== true) { activationMessage(data?.message || 'المفتاح غير صالح أو انتهت صلاحيته.', true); return; }
     document.getElementById('activationCode').value = '';
     activationMessage('تم تفعيل الحساب بنجاح.', false);
     await refreshAccountState();
-  } catch (e) {
-    activationMessage('حدث خطأ في الاتصال أثناء التفعيل.', true);
-  } finally {
-    button.disabled = false;
-    button.textContent = 'تفعيل الحساب';
-  }
+  } catch (e) { activationMessage('حدث خطأ في الاتصال أثناء التفعيل.', true); }
+  finally { button.disabled = false; button.textContent = 'تفعيل الحساب'; }
 });
+
 function applyColor(color) {
   document.documentElement.style.setProperty('--accent', color);
   document.getElementById('accent').value = color;
-  try { localStorage.setItem('dripCarAccent', color); } catch(e) {}
+  try { localStorage.setItem('dripWireAccent', color); } catch(e) {}
 }
 function resetTheme() {
-  document.documentElement.style.setProperty('--accent', '#087cff');
-  document.getElementById('accent').value = '#087cff';
-  try { localStorage.removeItem('dripCarAccent'); } catch(e) {}
+  document.documentElement.style.setProperty('--accent', '#8038f5');
+  document.getElementById('accent').value = '#7c3aed';
+  try { localStorage.removeItem('dripWireAccent'); } catch(e) {}
 }
 document.getElementById('applyTheme').addEventListener('click', () => {
   if (!isAdmin && !isActivated) return showTab('activation');
@@ -656,182 +376,94 @@ document.getElementById('openUrl').addEventListener('click', () => {
   if (!isAdmin && !isActivated) return showTab('activation');
   try {
     const url = new URL(document.getElementById('siteUrl').value.trim());
-    if (!['https:', 'http:'].includes(url.protocol)) throw new Error();
+    if (!['https:','http:'].includes(url.protocol)) throw new Error();
     window.open(url.href, '_blank', 'noopener,noreferrer');
-  } catch(e) {
-    alert('اكتب رابطًا صحيحًا يبدأ بـ https:// أو http://');
-  }
+  } catch(e) { alert('اكتب رابطًا صحيحًا يبدأ بـ https:// أو http://'); }
 });
-  
-const installConfigButton = document.getElementById('installConfig');
-
-if (installConfigButton) {
-  installConfigButton.addEventListener('click', () => {
-    const server = document.getElementById('serverSelect').value;
-    const setupMessage = document.getElementById('setupMessage');
-
-    setupMessage.textContent =
-      'تم اختيار السيرفر: ' + server +
-      '. يلزم إعداد اتصال حقيقي قبل تثبيت ملف VPN.';
-  });
-}
-
-document.getElementById('logout').addEventListener('click', async () => {
+document.getElementById('installConfig').addEventListener('click', () => {
+  if (!isAdmin && !isActivated) { showTab('activation'); return; }
+  const server = document.getElementById('serverSelect').value;
+  const names = {eu:'Europe #0',us:'United States #0',asia:'Asia #0'};
+  document.getElementById('setupMessage').textContent =
+    'تم اختيار السيرفر: ' + (names[server] || server) + '. يلزم إعداد خادم حقيقي وملف اتصال صالح قبل تشغيل VPN.';
+});
+async function performLogout() {
   if (!client) return;
-  const { error } = await client.auth.signOut();
-  if (error) {
-    alert('تعذر تسجيل الخروج. حاول مرة أخرى.');
-    return;
-  }
-  
-const logoutNav = document.getElementById('logoutNav');
-
-if (logoutNav) {
-  logoutNav.addEventListener('click', async () => {
-    if (!client) return;
-
+  try {
     const { error } = await client.auth.signOut();
-
-    if (error) {
-      alert('تعذر تسجيل الخروج. حاول مرة أخرى.');
-      return;
-    }
-
-    showLogin();
-    showSignupView(false);
-    message('تم تسجيل الخروج بنجاح.', false);
-  });
+    if (error) { alert('تعذر تسجيل الخروج. حاول مرة أخرى.'); return; }
+    showLogin(); showSignupView(false); message('تم تسجيل الخروج بنجاح.', false);
+  } catch (e) { alert('حدث خطأ أثناء تسجيل الخروج. حاول مرة أخرى.'); }
 }
+document.getElementById('logout').addEventListener('click', performLogout);
+document.getElementById('logoutNav').addEventListener('click', performLogout);
 
-  showLogin();
-  showSignupView(false);
-  message('تم تسجيل الخروج بنجاح.', false);
-});
 async function loadActivationKeys() {
-  if (!await checkAdmin()) {
-    adminMessage('تعذر التحقق من صلاحية الإدارة. سجّل الدخول بحساب المدير.', true);
-    return;
-  }
+  if (!await checkAdmin()) { adminMessage('تعذر التحقق من صلاحية الإدارة. سجّل الدخول بحساب المدير.', true); return; }
   const list = document.getElementById('keysList');
   list.textContent = 'جارٍ تحميل المفاتيح...';
   try {
     const { data, error } = await client.rpc('admin_list_activation_keys');
-    if (error) {
-      list.textContent = 'تعذر تحميل المفاتيح. تحقق من إعدادات Supabase.';
-      return;
-    }
+    if (error) { list.textContent = 'تعذر تحميل المفاتيح. تحقق من إعدادات Supabase.'; return; }
     list.replaceChildren();
-    if (!data || data.length === 0) {
-      list.textContent = 'لا توجد مفاتيح تفعيل حتى الآن.';
-      return;
-    }
+    if (!data || data.length === 0) { list.textContent = 'لا توجد مفاتيح تفعيل حتى الآن.'; return; }
     data.forEach(key => {
-      const item = document.createElement('div');
-      item.className = 'tile';
-      item.style.marginTop = '12px';
-      const code = document.createElement('p');
-      code.textContent = 'المفتاح: ' + key.key_code;
-      const state = document.createElement('p');
-      state.textContent = 'الحالة: ' + (key.is_active ? 'نشط' : 'متوقف');
-      const uses = document.createElement('p');
-      uses.textContent = 'الاستخدامات: ' + key.uses_count + ' / ' + key.max_uses;
+      const item = document.createElement('div'); item.className = 'tile'; item.style.marginTop = '12px';
+      const code = document.createElement('p'); code.textContent = 'المفتاح: ' + key.key_code;
+      const state = document.createElement('p'); state.textContent = 'الحالة: ' + (key.is_active ? 'نشط' : 'متوقف');
+      const uses = document.createElement('p'); uses.textContent = 'الاستخدامات: ' + key.uses_count + ' / ' + key.max_uses;
       item.append(code, state, uses);
-      if (key.expires_at) {
-        const expiry = document.createElement('p');
-        expiry.textContent = 'ينتهي: ' + new Date(key.expires_at).toLocaleString('ar-EG');
-        item.append(expiry);
-      }
+      if (key.expires_at) { const expiry = document.createElement('p'); expiry.textContent = 'ينتهي: ' + new Date(key.expires_at).toLocaleString('ar-EG'); item.append(expiry); }
       if (key.is_active) {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.textContent = 'إيقاف المفتاح';
+        const button = document.createElement('button'); button.type = 'button'; button.textContent = 'إيقاف المفتاح';
         button.addEventListener('click', async () => {
           button.disabled = true;
           try {
-            const { data: ok, error } = await client.rpc('admin_disable_activation_key', {
-              p_key_id: key.id
-            });
-            if (error || !ok) {
-              adminMessage('تعذر إيقاف المفتاح.', true);
-              button.disabled = false;
-              return;
-            }
-            adminMessage('تم إيقاف المفتاح بنجاح.');
-            await loadActivationKeys();
-          } catch (e) {
-            adminMessage('حدث خطأ أثناء إيقاف المفتاح.', true);
-            button.disabled = false;
-          }
+            const { data: ok, error } = await client.rpc('admin_disable_activation_key', { p_key_id: key.id });
+            if (error || !ok) { adminMessage('تعذر إيقاف المفتاح.', true); button.disabled = false; return; }
+            adminMessage('تم إيقاف المفتاح بنجاح.'); await loadActivationKeys();
+          } catch (e) { adminMessage('حدث خطأ أثناء إيقاف المفتاح.', true); button.disabled = false; }
         });
         item.append(button);
       }
       list.append(item);
     });
-  } catch (e) {
-    list.textContent = 'حدث خطأ في الاتصال أثناء تحميل المفاتيح.';
-  }
+  } catch (e) { list.textContent = 'حدث خطأ في الاتصال أثناء تحميل المفاتيح.'; }
 }
 document.getElementById('createKey').addEventListener('click', async () => {
-  if (!await checkAdmin()) {
-    adminMessage('حسابك لا يملك صلاحية الإدارة.', true);
-    return;
-  }
+  if (!await checkAdmin()) { adminMessage('حسابك لا يملك صلاحية الإدارة.', true); return; }
   const days = Number(document.getElementById('keyDays').value);
   const uses = Number(document.getElementById('keyUses').value);
-  if (!Number.isInteger(days) || days < 1 || days > 3650 ||
-      !Number.isInteger(uses) || uses < 1 || uses > 1000) {
-    adminMessage('أدخل مدة من 1 إلى 3650 يومًا، واستخدامات من 1 إلى 1000.', true);
-    return;
+  if (!Number.isInteger(days) || days < 1 || days > 3650 || !Number.isInteger(uses) || uses < 1 || uses > 1000) {
+    adminMessage('أدخل مدة من 1 إلى 3650 يومًا، واستخدامات من 1 إلى 1000.', true); return;
   }
   const button = document.getElementById('createKey');
-  button.disabled = true;
-  button.textContent = 'جارٍ إنشاء المفتاح...';
+  button.disabled = true; button.textContent = 'جارٍ إنشاء المفتاح...';
   try {
     const expiry = new Date(Date.now() + days * 86400000).toISOString();
-    const { data, error } = await client.rpc('admin_create_activation_key', {
-      p_expires_at: expiry,
-      p_max_uses: uses
-    });
-    if (error) {
-      adminMessage('تعذر إنشاء المفتاح. تحقق من تسجيل الدخول وصلاحية المدير.', true);
-      return;
-    }
-    adminMessage('تم إنشاء المفتاح: ' + data);
-    await loadActivationKeys();
-  } catch (e) {
-    adminMessage('حدث خطأ في الاتصال أثناء إنشاء المفتاح.', true);
-  } finally {
-    button.disabled = false;
-    button.textContent = 'إنشاء مفتاح جديد';
-  }
+    const { data, error } = await client.rpc('admin_create_activation_key', { p_expires_at: expiry, p_max_uses: uses });
+    if (error) { adminMessage('تعذر إنشاء المفتاح. تحقق من تسجيل الدخول وصلاحية المدير.', true); return; }
+    adminMessage('تم إنشاء المفتاح: ' + data); await loadActivationKeys();
+  } catch (e) { adminMessage('حدث خطأ في الاتصال أثناء إنشاء المفتاح.', true); }
+  finally { button.disabled = false; button.textContent = 'إنشاء مفتاح جديد'; }
 });
 document.getElementById('refreshKeys').addEventListener('click', loadActivationKeys);
+
 async function initialize() {
   try {
-    const savedColor = localStorage.getItem('dripCarAccent');
+    const savedColor = localStorage.getItem('dripWireAccent');
     if (savedColor && /^#[0-9a-f]{6}$/i.test(savedColor)) {
       document.documentElement.style.setProperty('--accent', savedColor);
       document.getElementById('accent').value = savedColor;
     }
   } catch(e) {}
-  if (!window.supabase) {
-    message('تعذر تحميل خدمة الدخول. تحقق من الإنترنت.');
-    return;
-  }
+  if (!window.supabase) { message('تعذر تحميل خدمة الدخول. تحقق من الإنترنت.'); return; }
   try {
     client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     const { data, error } = await client.auth.getSession();
-    if (error) {
-      message('تعذر التحقق من الجلسة. سجّل الدخول مرة أخرى.');
-      return;
-    }
-    if (data.session) {
-      showDashboard(data.session.user);
-      await refreshAccountState();
-    }
-  } catch(e) {
-    message('تعذر الاتصال بخدمة تسجيل الدخول.');
-  }
+    if (error) { message('تعذر التحقق من الجلسة. سجّل الدخول مرة أخرى.'); return; }
+    if (data.session) { showDashboard(data.session.user); await refreshAccountState(); }
+  } catch(e) { message('تعذر الاتصال بخدمة تسجيل الدخول.'); }
 }
 initialize();
 </script>
