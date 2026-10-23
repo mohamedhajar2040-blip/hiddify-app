@@ -362,16 +362,32 @@ function showLogin() {
   document.getElementById('keysList').replaceChildren();
   document.getElementById('activationCode').value = '';
 }
+
 function showTab(id) {
   if (id === 'admin' && !isAdmin) id = 'activation';
-  if (!isAdmin && !isActivated && !['activation','profile'].includes(id)) {
+
+  if (
+    !isAdmin &&
+    !isActivated &&
+    !['activation', 'profile'].includes(id)
+  ) {
     id = 'activation';
   }
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('active'));
+
+  document.querySelectorAll('.section').forEach(s => {
+    s.classList.remove('active');
+  });
+
+  document.querySelectorAll('[data-tab]').forEach(b => {
+    b.classList.remove('active');
+  });
+
   const section = document.getElementById(id);
   if (section) section.classList.add('active');
-  const button = document.querySelector('[data-tab="' + id + '"]');
+
+  const button = document.querySelector(
+    '.nav [data-tab="' + id + '"]'
+  );
   if (button) button.classList.add('active');
 }
 async function checkAdmin() {
