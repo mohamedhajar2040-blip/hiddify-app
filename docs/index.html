@@ -429,7 +429,7 @@ function showTab(id) {
   if (
     !isAdmin &&
     !isActivated &&
-    !['activation', 'profile'].includes(id)
+!['activation', 'profile', 'setup', 'features'].includes(id)
   ) {
     id = 'activation';
   }
