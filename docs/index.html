@@ -662,6 +662,20 @@ document.getElementById('openUrl').addEventListener('click', () => {
     alert('اكتب رابطًا صحيحًا يبدأ بـ https:// أو http://');
   }
 });
+  
+const installConfigButton = document.getElementById('installConfig');
+
+if (installConfigButton) {
+  installConfigButton.addEventListener('click', () => {
+    const server = document.getElementById('serverSelect').value;
+    const setupMessage = document.getElementById('setupMessage');
+
+    setupMessage.textContent =
+      'تم اختيار السيرفر: ' + server +
+      '. يلزم إعداد اتصال حقيقي قبل تثبيت ملف VPN.';
+  });
+}
+
 document.getElementById('logout').addEventListener('click', async () => {
   if (!client) return;
   const { error } = await client.auth.signOut();
